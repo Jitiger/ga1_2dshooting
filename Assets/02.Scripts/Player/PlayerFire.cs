@@ -26,8 +26,16 @@ public class PlayerFire : MonoBehaviour
     public Transform SubLeftFirePoint;
     private void Update()
     {
-      Fire();
-      SubFire();
+        // 1. 스페이스바를 누르면
+        if (CoolTimer<= 0 && Input.GetKeyDown(KeyCode.Space))
+        {
+            // 2. 발사
+            Fire();
+            SubFire();
+            // 3. 쿨타이머 초기화
+            CoolTimer=CoolTime;
+        }
+      
     }
 
     public void SubFire()
