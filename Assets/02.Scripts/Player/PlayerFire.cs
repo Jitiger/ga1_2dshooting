@@ -10,24 +10,35 @@ public class PlayerFire : MonoBehaviour
     public Transform RightFirePoint;
     public Transform LeftFirePoint;
     
+    public GameObject RedBullet;
+    public Transform SubRightFirePoint;
+    public Transform SubLeftFirePoint;
     // - 쿨타이머
     public float CoolTime = 0.5f;
     public float CoolTimer = 0;
 
+    // - Auto 모드
+    public bool AutoFireMode = false;
+    
     private void Start()
     {
         CoolTimer = CoolTime;
     }
 
     // public Transform[] FirePoint;
-
-    public GameObject RedBullet;
-    public Transform SubRightFirePoint;
-    public Transform SubLeftFirePoint;
+    
     private void Update()
     {
-        // 1. 스페이스바를 누르면
-        if (CoolTimer<= 0 && Input.GetKeyDown(KeyCode.Space))
+        // 오토 공격 모드 토글
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            AutoFireMode = !AutoFireMode;
+        }
+
+        CoolTimer -= Time.deltaTime;
+        
+        // 1. 쿨타이머가 0초 이하이고 && (스페이스바를 누르거나 || 오토 모드라면)
+        if (CoolTimer <= 0 && (Input.GetKeyDown(KeyCode.Space) || AutoFireMode))
         {
             // 2. 발사
             Fire();
@@ -35,7 +46,6 @@ public class PlayerFire : MonoBehaviour
             // 3. 쿨타이머 초기화
             CoolTimer=CoolTime;
         }
-      
     }
 
     public void SubFire()
