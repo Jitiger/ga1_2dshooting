@@ -9,6 +9,15 @@ public class PlayerFire : MonoBehaviour
     // - 생성 위치(총구)
     public Transform RightFirePoint;
     public Transform LeftFirePoint;
+    
+    // - 쿨타이머
+    public float CoolTime = 0.5f;
+    public float CoolTimer = 0;
+
+    private void Start()
+    {
+        CoolTimer = CoolTime;
+    }
 
     // public Transform[] FirePoint;
 

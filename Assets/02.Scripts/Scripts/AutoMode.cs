@@ -5,6 +5,7 @@ public class AutoMode : MonoBehaviour
     public PlayerFire PlayerFire;
     public bool AutoFire;
     public bool cooltime;
+    //public bool cooltime;
     private void Start()
     {
         
