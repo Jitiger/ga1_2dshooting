@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public enum BulletType
-    {
-        main,
-        sub
-    }
+    public int Damage;
 
-    public BulletType Type;
 
     // 목적: 총알을 위로 움직이고 싶다.
     public float MoveSpeed;
@@ -30,7 +25,8 @@ public class Bullet : MonoBehaviour
             Destroy(this.gameObject);
             //GetComponent<타입>()-> 게임 오브젝트가 가지고 있는 컴포넌트를 참조
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            enemy.Health -= 10;
+            enemy.Health -= Damage;
+
 
             if (enemy.Health <= 0)
             {
