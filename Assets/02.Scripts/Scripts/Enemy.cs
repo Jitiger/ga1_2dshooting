@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float speed = 3f;
+    public float MoveSpeed = 3f;
+    public float Health = 100;
 
     private void Start()
     {
@@ -16,6 +17,6 @@ public class Enemy : MonoBehaviour
     private void move()
     {
         Vector2 direction = Vector2.down;
-        transform.Translate((direction * speed * Time.deltaTime));
+        transform.Translate((direction * MoveSpeed * Time.deltaTime));
     }
 }
