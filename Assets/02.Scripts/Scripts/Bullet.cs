@@ -4,6 +4,21 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    //트리거 관련 이벤트
+    /* private void OnTriggerEnter2D(Collider2D other)
+     {
+         if (other.gameObject.CompareTag("Enemy"))
+         {
+             Destroy(this.gameObject);
+             //GetComponent<타입>()-> 게임 오브젝트가 가지고 있는 컴포넌트를 참조
+             Enemy enemy = other.gameObject.GetComponent<Enemy>();
+             // 응집도는 높히고, 결합도는 낮춰라
+             // 결합도란 묻는거.. 매번 묻는거..
+             enemy.TakeDamage(Damage);
+         }
+     }
+     */
+
     public int Damage;
 
 
@@ -25,13 +40,9 @@ public class Bullet : MonoBehaviour
             Destroy(this.gameObject);
             //GetComponent<타입>()-> 게임 오브젝트가 가지고 있는 컴포넌트를 참조
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            enemy.Health -= Damage;
-
-
-            if (enemy.Health <= 0)
-            {
-                Destroy(collision.gameObject);
-            }
+            // 응집도는 높히고, 결합도는 낮춰라
+            // 결합도란 묻는거.. 매번 묻는거..
+            enemy.TakeDamage(Damage);
         }
     }
 }
