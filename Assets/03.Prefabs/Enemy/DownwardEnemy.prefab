@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6091685640068558756}
   - component: {fileID: 5163670729002039168}
   - component: {fileID: 8588275104270524602}
-  - component: {fileID: 7502872933666301466}
   m_Layer: 7
   m_Name: DownwardEnemy
   m_TagString: Enemy
@@ -107,27 +106,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DownwardEnemy
   _health: 100
   _moveSpeed: 0
-  SpawnTime: 2
-  SpawnTimer: 0
-  SpawnMaxPositionX: 0
-  SpawnMinPositionX: 0
-  SpawnPositionY: 0
---- !u!114 &7502872933666301466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5589314308733683416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 159c050e50e8a604f8a9960c3f92cf93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DownwardEnemy
-  _health: 100
-  _moveSpeed: 0
-  SpawnTime: 2
-  SpawnTimer: 0
-  SpawnMaxPositionX: 0
-  SpawnMinPositionX: 0
-  SpawnPositionY: 0
