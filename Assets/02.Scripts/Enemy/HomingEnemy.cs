@@ -11,6 +11,9 @@ public class HomingEnemy : Enemy
 
     protected override void Move()
     {
+        _player = GameObject.FindWithTag("Player");
+
+
         // 1. 방향을 구한다.
         Vector2 direction = _player.transform.position - transform.position;
         direction.Normalize();
