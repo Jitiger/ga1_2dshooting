@@ -50,6 +50,6 @@ MonoBehaviour:
   _spawnInterval: 1
   _spawnMaxPositionX: 2
   _spawnMinPositionX: -2
-  _spawnMaxPositionY: 6
+  _spawnMaxPositionY: 9
   _spawnMinPositionY: 5
   _enemyCount: 5

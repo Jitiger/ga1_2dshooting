@@ -23,6 +23,9 @@ public class EnemySpawner : MonoBehaviour
     [Header("생성할 적의 수")]
     [SerializeField] private int _enemyCount;
 
+    // Todo: Scriptable Object를 사용해서 리팩토링
+    // 이유 1: 배열을 사용했지만 각 아이템이 어떤 프리팹인지 알수가 없음
+    // 이유 2: 각 에너미 스폰 확률을 매직넘버로 하드코딩해서 유지보수가 어렵
     private void Update()
     {
         _timer += Time.deltaTime;
