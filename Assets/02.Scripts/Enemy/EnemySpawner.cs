@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // 역할: 일정 시간마다 적을 생성해주고 싶다.
-public class EnemySpawn : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {
     // 필요 속성
     [Header("스폰 적 프리팹")]
@@ -17,10 +17,12 @@ public class EnemySpawn : MonoBehaviour
     [Header("스폰 위치")]
     [SerializeField] private float _spawnMaxPositionX = 0f;
     [SerializeField] private float _spawnMinPositionX = 0f;
-    [SerializeField] private float _spawnPositionY = 0f;
+    [SerializeField] private float _spawnMaxPositionY = 0f;
+    [SerializeField] private float _spawnMinPositionY = 0f;
 
     [Header("생성할 적의 수")]
     [SerializeField] private int _enemyCount;
+
     private void Update()
     {
         _timer += Time.deltaTime;
@@ -43,10 +45,14 @@ public class EnemySpawn : MonoBehaviour
                 _spawnMinPositionX,
                 _spawnMaxPositionX
             );
+            float randomY = Random.Range(
+                _spawnMaxPositionY,
+                _spawnMaxPositionY
+            );
 
             Vector2 spawnPosition = new Vector2(
                 randomX,
-                _spawnPositionY
+                randomY
             );
 
             // 인스펙터에서 지정한 y좌표 사이에서 위치 뽑기

@@ -47,8 +47,9 @@ MonoBehaviour:
   _downwardEnemyPrefab: {fileID: 4501361352314430654, guid: f1d4246572265f14fb30e7bd9462fe2e, type: 3}
   _aimedEnemyPrefab: {fileID: 3144592776058624069, guid: e1b4dc5e52bd7ab4392e67ffa04a8f5f, type: 3}
   _homingEnemyPrefab: {fileID: 5240536689709595280, guid: 86a0d9c643390804798b3cc67aa464a7, type: 3}
-  _spawnInterval: 0
-  SpawnMaxPositionX: 2
-  SpawnMinPositionX: -2
-  SpawnPositionY: 5
-  _enemyCount: 10
+  _spawnInterval: 1
+  _spawnMaxPositionX: 2
+  _spawnMinPositionX: -2
+  _spawnMaxPositionY: 6
+  _spawnMinPositionY: 5
+  _enemyCount: 5
