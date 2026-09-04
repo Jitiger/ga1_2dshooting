@@ -49,7 +49,7 @@ public class EnemySpawner : MonoBehaviour
                 _spawnMaxPositionX
             );
             float randomY = Random.Range(
-                _spawnMaxPositionY,
+                _spawnMinPositionY,
                 _spawnMaxPositionY
             );
 
