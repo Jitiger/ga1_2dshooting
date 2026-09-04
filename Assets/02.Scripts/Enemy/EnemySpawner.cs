@@ -1,36 +1,81 @@
 using UnityEngine;
 
+// 역할: 일정 시간마다 적을 생성해주고 싶다.
 public class EnemySpawn : MonoBehaviour
 {
-    public GameObject[] EnemyPrefabs;
+    // 필요 속성
+    [Header("스폰 적 프리팹")]
+    [SerializeField] private Enemy _downwardEnemyPrefab;
+    [SerializeField] private Enemy _aimedEnemyPrefab;
+    [SerializeField] private Enemy _homingEnemyPrefab;
 
-    public float SpawnTime = 2f;
-    public float SpawnTimer = 0;
+    [Header("스폰 간격")]
+    [SerializeField] private float _spawnInterval = 3f;
 
-    public float SpawnMaxPositionX;
-    public float SpawnMinPositionX;
-    public float SpawnPositionY;
+    private float _timer = 0f;
 
+    [Header("스폰 위치")]
+    [SerializeField] private float _spawnMaxPositionX = 0f;
+    [SerializeField] private float _spawnMinPositionX = 0f;
+    [SerializeField] private float _spawnPositionY = 0f;
+
+    [Header("생성할 적의 수")]
+    [SerializeField] private int _enemyCount;
     private void Update()
     {
-        SpawnTimer -= Time.deltaTime;
+        _timer += Time.deltaTime;
 
-        EnemySpawner();
+        if (_timer >= _spawnInterval)
+        {
+            _timer = 0f;
+            _spawnInterval = Random.Range(1f, 3f);
+
+            Spawn();
+        }
     }
 
-    private void EnemySpawner()
+    private void Spawn()
     {
-        if (SpawnTimer <= 0)
+        for (int i = 0; i < _enemyCount; i++)
         {
-            float randomX = Random.Range(SpawnMinPositionX, SpawnMaxPositionX);
-            Vector2 spawnPosition = new Vector2(randomX, SpawnPositionY);
+            // 일단 랜덤하게 생성할 x좌표 위치 뽑고
+            float randomX = Random.Range(
+                _spawnMinPositionX,
+                _spawnMaxPositionX
+            );
 
-            int randomEnemy = Random.Range(0, EnemyPrefabs.Length);
+            Vector2 spawnPosition = new Vector2(
+                randomX,
+                _spawnPositionY
+            );
 
-            GameObject enemy = Instantiate(EnemyPrefabs[randomEnemy]);
-            enemy.transform.position = spawnPosition;
+            // 인스펙터에서 지정한 y좌표 사이에서 위치 뽑기
+            int randomValue = Random.Range(0, 100);
 
-            SpawnTimer = SpawnTime;
+            Enemy enemyPrefab;
+
+            //weight 공부한거!!
+            // Downward 50%
+            if (randomValue < 50)
+            {
+                enemyPrefab = _downwardEnemyPrefab;
+            }
+            // Aimed 30%
+            else if (randomValue < 80)
+            {
+                enemyPrefab = _aimedEnemyPrefab;
+            }
+            // Homing 20%
+            else
+            {
+                enemyPrefab = _homingEnemyPrefab;
+            }
+
+            Instantiate(
+                enemyPrefab,
+                spawnPosition,
+                Quaternion.identity
+            );
         }
     }
 }
