@@ -3,11 +3,16 @@ using UnityEngine;
 // 역할: 일정 시간마다 적을 생성해주고 싶다.
 public class EnemySpawner : MonoBehaviour
 {
+    [System.Serializable]
+    private class EnemySpawnData
+    {
+        public Enemy EnemyPrefab;
+        public int Weight;
+    }
+
     // 필요 속성
-    [Header("스폰 적 프리팹")]
-    [SerializeField] private Enemy _downwardEnemyPrefab;
-    [SerializeField] private Enemy _aimedEnemyPrefab;
-    [SerializeField] private Enemy _homingEnemyPrefab;
+    [Header("스폰 적 프리팹과 가중치")]
+    [SerializeField] private EnemySpawnData[] _enemySpawnData;
 
     [Header("스폰 간격")]
     [SerializeField] private float _spawnInterval = 3f;
@@ -23,9 +28,6 @@ public class EnemySpawner : MonoBehaviour
     [Header("생성할 적의 수")]
     [SerializeField] private int _enemyCount;
 
-    // Todo: Scriptable Object를 사용해서 리팩토링
-    // 이유 1: 배열을 사용했지만 각 아이템이 어떤 프리팹인지 알수가 없음
-    // 이유 2: 각 에너미 스폰 확률을 매직넘버로 하드코딩해서 유지보수가 어렵
     private void Update()
     {
         _timer += Time.deltaTime;
@@ -33,6 +35,8 @@ public class EnemySpawner : MonoBehaviour
         if (_timer >= _spawnInterval)
         {
             _timer = 0f;
+
+            // 적 생성 간격은 기존처럼 균등 난수 사용
             _spawnInterval = Random.Range(1f, 3f);
 
             Spawn();
@@ -43,11 +47,12 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < _enemyCount; i++)
         {
-            // 일단 랜덤하게 생성할 x좌표 위치 뽑고
+            // 랜덤한 생성 위치 선택
             float randomX = Random.Range(
                 _spawnMinPositionX,
                 _spawnMaxPositionX
             );
+
             float randomY = Random.Range(
                 _spawnMinPositionY,
                 _spawnMaxPositionY
@@ -58,26 +63,12 @@ public class EnemySpawner : MonoBehaviour
                 randomY
             );
 
-            // 인스펙터에서 지정한 y좌표 사이에서 위치 뽑기
-            int randomValue = Random.Range(0, 100);
+            // 가중치를 이용해서 생성할 적 선택
+            Enemy enemyPrefab = SelectRandomEnemy();
 
-            Enemy enemyPrefab;
-
-            //weight 공부한거!!
-            // Downward 50%
-            if (randomValue < 50)
+            if (enemyPrefab == null)
             {
-                enemyPrefab = _downwardEnemyPrefab;
-            }
-            // Aimed 30%
-            else if (randomValue < 80)
-            {
-                enemyPrefab = _aimedEnemyPrefab;
-            }
-            // Homing 20%
-            else
-            {
-                enemyPrefab = _homingEnemyPrefab;
+                return;
             }
 
             Instantiate(
@@ -86,5 +77,46 @@ public class EnemySpawner : MonoBehaviour
                 Quaternion.identity
             );
         }
+    }
+
+    private Enemy SelectRandomEnemy()
+    {
+        // 배열이 비어 있는지 확인
+        if (_enemySpawnData == null || _enemySpawnData.Length == 0)
+        {
+            Debug.LogError("Enemy Spawn Data가 비어 있음.");
+            return null;
+        }
+
+        // 전체 Weight 계산
+        int totalWeight = 0;
+
+        foreach (EnemySpawnData enemy in _enemySpawnData)
+        {
+            totalWeight += enemy.Weight;
+        }
+
+        if (totalWeight <= 0)
+        {
+            Debug.LogError("적 Weight의 합은 0보다 커야함.");
+            return null;
+        }
+
+        // 전체 Weight 범위에서 난수 생성
+        int randomValue = Random.Range(0, totalWeight);
+
+        // Weight를 차례대로 빼면서 적 선택
+        foreach (EnemySpawnData enemy in _enemySpawnData)
+        {
+            randomValue -= enemy.Weight;
+
+            if (randomValue < 0)
+            {
+                return enemy.EnemyPrefab;
+            }
+        }
+
+        // 혹시 모를 경우 마지막 적 반환
+        return _enemySpawnData[_enemySpawnData.Length - 1].EnemyPrefab;
     }
 }

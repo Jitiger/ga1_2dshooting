@@ -70,4 +70,11 @@ public class PlayerMove : MonoBehaviour
 
         transform.position = newPosition;
     }
+    public void IncreaseMoveSpeed(float amount)
+    {
+        Speed += amount;
+
+        Debug.Log("Move Speed : " + Speed);
+    }
+    
 }

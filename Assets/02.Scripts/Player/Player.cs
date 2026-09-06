@@ -13,4 +13,11 @@ public class Player : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void Heal(int healAmount)
+    {
+        _health += healAmount;
+
+        Debug.Log("Player Health : " + _health);
+    }
 }
