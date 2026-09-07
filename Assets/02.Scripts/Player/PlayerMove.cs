@@ -18,23 +18,7 @@ public class PlayerMove : MonoBehaviour
     private void Update()
     {
         Move();
-        SpeedChange();
     }
-
-    private void SpeedChange()
-    {
-        // 7. Q/E 버튼 입력을 통한 스피드 업/다운
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            _speed++;
-        }
-        else if (Input.GetKeyDown(KeyCode.Q))
-        {
-            _speed--;
-        }
-    }
-
-
     private void Move()
     {
         // 1. 키보드 입력을 받는다.

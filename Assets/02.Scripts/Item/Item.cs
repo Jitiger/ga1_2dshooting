@@ -59,7 +59,9 @@ public class Item : MonoBehaviour
 
         Destroy(gameObject);
     }
-
+    // 심화 과제 1. 퍼사드 패턴(패턴: 객체지향에서 자주 일어나는 설계 문제를 잘 풀어내도록 경험에 의해 정리해논 공식같은거...)
+    // 심화 과제 2. 아이템 종류가 조합에 의해 폭발적으로 증가할 경우에는 -> 조합 패턴을 사용해라
+    //포트폴리오에서 가장 중요한게 게임 구현 완성도 (코드의 완성도는 가장 후순위)
     private void ApplyEffect(Collider2D other)
     {
         switch (_itemType)
