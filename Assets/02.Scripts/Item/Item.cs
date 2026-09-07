@@ -2,13 +2,6 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public enum ItemType
-    {
-        AttackSpeed,
-        Heal,
-        MoveSpeed
-    }
-
     [Header("아이템 종류")]
     [SerializeField] private ItemType _itemType;
 
@@ -52,10 +45,7 @@ public class Item : MonoBehaviour
         Vector2 direction =
             (_player.position - transform.position).normalized;
 
-        transform.position +=
-            (Vector3)direction
-            * _moveSpeed
-            * Time.deltaTime;
+        transform.position += (Vector3)direction * _moveSpeed * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

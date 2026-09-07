@@ -108,9 +108,9 @@ MonoBehaviour:
   _itemType: 2
   _waitTime: 1
   _moveSpeed: 5
-  _healAmount: 20
+  _healAmount: 0
   _moveSpeedIncrease: 1
-  _attackSpeedIncrease: 0.1
+  _attackSpeedIncrease: 0
 --- !u!60 &8704060058958836824
 PolygonCollider2D:
   m_ObjectHideFlags: 0

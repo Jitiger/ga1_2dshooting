@@ -5,20 +5,19 @@ public class PlayerMove : MonoBehaviour
     // 목적: 키보드 입력에 따라서 플레이어 이동 처리를 하고 싶다.
 
     // 필요 필드:
-    public float Speed;
-    public float MaxPositionY;
-    public float MinPositionY;
-    public float MaxPositionX;
-    public float MinPositionX;
+    [Header("플레이어 이동 속도")]
+    [SerializeField] private float _speed;
 
-
+    [Header("플레이어 이동 가능 좌표")]
+    [SerializeField] private float _maxPositionY;
+    [SerializeField] private float _minPositionY;
+    [SerializeField] private float _maxPositionX;
+    [SerializeField] private float _minPositionX;
     // 매 프레임마다 실행된다.
     // 초당 프레임 실행 횟수는: 별다른 설정이 없을 경우 가능한 많이
     private void Update()
     {
         Move();
-
-
         SpeedChange();
     }
 
@@ -27,11 +26,11 @@ public class PlayerMove : MonoBehaviour
         // 7. Q/E 버튼 입력을 통한 스피드 업/다운
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Speed++;
+            _speed++;
         }
         else if (Input.GetKeyDown(KeyCode.Q))
         {
-            Speed--;
+            _speed--;
         }
     }
 
@@ -46,34 +45,34 @@ public class PlayerMove : MonoBehaviour
         Vector2 normalizedDirection = new Vector2(h, v).normalized;
 
         // 3. 방향과 속력에 따라 이동한다.
-        Vector2 newPosition = transform.position + (Vector3)normalizedDirection * Speed * Time.deltaTime;
+        Vector2 newPosition = transform.position + (Vector3)normalizedDirection * _speed * Time.deltaTime;
 
         // 4. 위치 y에 제한이 있다.
-        if (newPosition.y > MaxPositionY)
+        if (newPosition.y > _maxPositionY)
         {
-            newPosition.y = MaxPositionY;
+            newPosition.y = _maxPositionY;
         }
-        else if (newPosition.y < MinPositionY)
+        else if (newPosition.y < _minPositionY)
         {
-            newPosition.y = MinPositionY;
+            newPosition.y = _minPositionY;
         }
 
         // 5. 양 옆 끝으로 가면 반대쪽 방향으로 이동
-        if (newPosition.x > MaxPositionX)
+        if (newPosition.x > _maxPositionX)
         {
-            newPosition.x = MinPositionX;
+            newPosition.x = _minPositionX;
         }
-        else if (newPosition.x < MinPositionX)
+        else if (newPosition.x < _minPositionX)
         {
-            newPosition.x = MaxPositionX;
+            newPosition.x = _maxPositionX;
         }
 
         transform.position = newPosition;
     }
+
     public void IncreaseMoveSpeed(float amount)
     {
-        Speed += amount;
-
-        Debug.Log("Move Speed : " + Speed);
+        _speed += amount;
+        Debug.Log("Move Speed : " + _speed);
     }
 }
