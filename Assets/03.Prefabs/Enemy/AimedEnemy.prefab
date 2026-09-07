@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4277259621463873979}
   - component: {fileID: 5680014779464142879}
   - component: {fileID: 3144592776058624069}
+  - component: {fileID: -8413910627130090316}
   m_Layer: 7
   m_Name: AimedEnemy
   m_TagString: Enemy
@@ -182,3 +183,23 @@ MonoBehaviour:
   _health: 100
   _moveSpeed: 8
   _damage: 10
+--- !u!114 &-8413910627130090316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2212391364570823043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e7889432c3e434f9ece85be6386bca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemDrop
+  _dropChance: 0.3
+  _dropItems:
+  - ItemPrefab: {fileID: 4871849950976567867, guid: 8efde96e402370541b1d61fc7148b754, type: 3}
+    Weight: 20
+  - ItemPrefab: {fileID: 3942065562996998142, guid: 7e925b39feb530f4ea6c6134eca2a86a, type: 3}
+    Weight: 50
+  - ItemPrefab: {fileID: 996693061764297222, guid: 9184536dd6b780e4082d21cd6bcc60fb, type: 3}
+    Weight: 30
