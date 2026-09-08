@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -7,11 +8,13 @@ public class PlayerMove : MonoBehaviour
     // 목적: 키보드 입력에 따라서 플레이어 이동 처리를 하고 싶다.
     // 필요 필드:
     private Animator _animator;
+
     [Header("플레이어 이동 속도")]
     [SerializeField] private float _speed;
 
     [Header("플레이어 이동 가능 좌표")]
     [SerializeField] private float _maxPositionY;
+
     [SerializeField] private float _minPositionY;
     [SerializeField] private float _maxPositionX;
     [SerializeField] private float _minPositionX;
@@ -22,10 +25,12 @@ public class PlayerMove : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
     }
+
     private void Update()
     {
         Move();
     }
+
     private void Move()
     {
         // 1. 키보드 입력을 받는다.

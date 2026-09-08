@@ -11,14 +11,14 @@ public class PlayerFire : MonoBehaviour
     public Transform SubRightFirePoint;
     public Transform SubLeftFirePoint;
 
-    public float CoolTime = 0.5f;
+    public float _fireRate = 0.5f;
     public float CoolTimer = 0;
 
     public bool AutoFireMode = false;
 
     private void Start()
     {
-        CoolTimer = CoolTime;
+        CoolTimer = _fireRate;
     }
 
     private void Update()
@@ -36,7 +36,7 @@ public class PlayerFire : MonoBehaviour
             Fire();
             SubFire();
 
-            CoolTimer = CoolTime;
+            CoolTimer = _fireRate;
         }
     }
 
@@ -60,13 +60,13 @@ public class PlayerFire : MonoBehaviour
 
     public void IncreaseAttackSpeed(float amount)
     {
-        CoolTime -= amount;
+        _fireRate -= amount;
 
-        if (CoolTime < 0.1f)
+        if (_fireRate < 0.1f)
         {
-            CoolTime = 0.1f;
+            _fireRate = 0.1f;
         }
 
-        Debug.Log("Attack CoolTime : " + CoolTime);
+        Debug.Log("Attack CoolTime : " + _fireRate);
     }
 }
