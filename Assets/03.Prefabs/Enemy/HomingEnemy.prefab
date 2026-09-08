@@ -111,7 +111,7 @@ MonoBehaviour:
   _health: 100
   _moveSpeed: 5
   _damage: 20
-  _deathEffectPrefab: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
+  _enemyDeathEffectPrefab: {fileID: 8194992990867289339, guid: 99bc28c0d45f51c4fbac01080b73edc7, type: 3}
 --- !u!61 &-6023795086904829799
 BoxCollider2D:
   m_ObjectHideFlags: 0

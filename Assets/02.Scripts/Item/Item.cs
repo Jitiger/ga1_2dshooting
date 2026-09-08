@@ -14,6 +14,9 @@ public class Item : MonoBehaviour
     [SerializeField] private float _moveSpeedIncrease = 1f;
     [SerializeField] private float _attackSpeedIncrease = 0.1f;
 
+    [Header("아이템 획득 이펙트")]
+    [SerializeField] private GameObject _pickupEffectPrefab;
+
     private float _timer = 0f;
     private Transform _player;
 
@@ -45,7 +48,8 @@ public class Item : MonoBehaviour
         Vector2 direction =
             (_player.position - transform.position).normalized;
 
-        transform.position += (Vector3)direction * _moveSpeed * Time.deltaTime;
+        transform.position +=
+            (Vector3)direction * _moveSpeed * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -57,12 +61,22 @@ public class Item : MonoBehaviour
 
         ApplyEffect(other);
 
+        // 아이템 획득 이펙트 생성
+        if (_pickupEffectPrefab != null)
+        {
+            Instantiate(
+                _pickupEffectPrefab,
+                transform.position,
+                Quaternion.identity
+            );
+        }
+
         Destroy(gameObject);
     }
 
-    // 심화 과제 1. 퍼사드 패턴(패턴: 객체지향에서 자주 일어나는 설계 문제를 잘 풀어내도록 경험에 의해 정리해논 공식같은거...)
-    // 심화 과제 2. 아이템 종류가 조합에 의해 폭발적으로 증가할 경우에는 -> 조합 패턴을 사용해라
-    //포트폴리오에서 가장 중요한게 게임 구현 완성도 (코드의 완성도는 가장 후순위)
+    // 심화 과제 1. 퍼사드 패턴
+    // 심화 과제 2. 아이템 종류가 조합에 의해 폭발적으로 증가할 경우에는 조합 패턴 사용
+    // 포트폴리오에서 가장 중요한 것은 게임 구현 완성도
     private void ApplyEffect(Collider2D other)
     {
         switch (_itemType)

@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
     // - 데이터 은닉
     // - 메서드를 통한 상태 변경
     [SerializeField] private int _health = 100;
-
+    [SerializeField] private GameObject _playerDeathEffectPrefab;
     public int Health => _health; // 람다식 문법을 활용한 읽기 전용 프로퍼티
 
     // 잘 설계된 클래스는
@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
 
         if (_health <= 0)
         {
+            Instantiate(_playerDeathEffectPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

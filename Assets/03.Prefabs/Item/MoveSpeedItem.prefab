@@ -112,6 +112,7 @@ MonoBehaviour:
   _healAmount: 0
   _moveSpeedIncrease: 1
   _attackSpeedIncrease: 0
+  _pickupEffectPrefab: {fileID: 5112403345868107898, guid: 6f34ef0d986e9db4199cf75805f79753, type: 3}
 --- !u!60 &8704060058958836824
 PolygonCollider2D:
   m_ObjectHideFlags: 0

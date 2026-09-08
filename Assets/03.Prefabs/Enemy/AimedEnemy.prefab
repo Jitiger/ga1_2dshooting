@@ -138,7 +138,7 @@ MonoBehaviour:
   _health: 100
   _moveSpeed: 8
   _damage: 10
-  _deathEffectPrefab: {fileID: 8194992990867289339, guid: 99bc28c0d45f51c4fbac01080b73edc7, type: 3}
+  _enemyDeathEffectPrefab: {fileID: 8194992990867289339, guid: 99bc28c0d45f51c4fbac01080b73edc7, type: 3}
 --- !u!114 &-8413910627130090316
 MonoBehaviour:
   m_ObjectHideFlags: 0

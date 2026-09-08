@@ -10,7 +10,7 @@ public abstract class Enemy : MonoBehaviour
     private bool _isDead = false;
 
     // 죽었을때 생성할 이펙트 프리팹
-    [SerializeField] private GameObject _deathEffectPrefab;
+    [SerializeField] private GameObject _enemyDeathEffectPrefab;
 
     private void Awake()
     {
@@ -49,7 +49,8 @@ public abstract class Enemy : MonoBehaviour
             {
                 itemDrop.Drop();
             }
-            Instantiate(_deathEffectPrefab, transform.position, Quaternion.identity);
+
+            Instantiate(_enemyDeathEffectPrefab, transform.position, Quaternion.identity);
             // Hit 애니메이션을 잠깐 보여준 뒤 삭제
             Destroy(gameObject, 0.2f);
         }
