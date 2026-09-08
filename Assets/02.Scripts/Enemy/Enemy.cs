@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] private int _health = 100;
+    [field: SerializeField] public int Health { get; private set; } = 100;
     [SerializeField] protected float _moveSpeed;
     [SerializeField] protected int _damage;
 
@@ -31,7 +31,7 @@ public abstract class Enemy : MonoBehaviour
             return;
         }
 
-        _health -= damage;
+        Health -= damage;
 
         // 피격 애니메이션 실행
         if (_animator != null)
@@ -39,7 +39,7 @@ public abstract class Enemy : MonoBehaviour
             _animator.SetTrigger("Hit");
         }
 
-        if (_health <= 0)
+        if (Health <= 0)
         {
             _isDead = true;
 
