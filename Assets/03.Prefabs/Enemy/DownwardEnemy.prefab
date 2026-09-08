@@ -111,6 +111,7 @@ MonoBehaviour:
   _health: 100
   _moveSpeed: 3
   _damage: 5
+  _deathEffectPrefab: {fileID: 8194992990867289339, guid: 99bc28c0d45f51c4fbac01080b73edc7, type: 3}
 --- !u!50 &-5776418443637507562
 Rigidbody2D:
   serializedVersion: 5
