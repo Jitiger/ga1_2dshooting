@@ -37,7 +37,6 @@ public class AimedEnemy : Enemy
         if (_player == null) return;
 
         //  방향과 속도에 맞게 이동한다.
-        transform.Translate(_direction * _moveSpeed * Time.deltaTime);
         transform.position += (Vector3)(_direction * _moveSpeed) * Time.deltaTime;
     }
 }

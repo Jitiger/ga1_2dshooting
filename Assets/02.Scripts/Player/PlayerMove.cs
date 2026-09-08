@@ -1,6 +1,3 @@
-using System;
-using TMPro;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -14,10 +11,10 @@ public class PlayerMove : MonoBehaviour
 
     [Header("플레이어 이동 가능 좌표")]
     [SerializeField] private float _maxPositionY;
-
     [SerializeField] private float _minPositionY;
     [SerializeField] private float _maxPositionX;
     [SerializeField] private float _minPositionX;
+
     // 매 프레임마다 실행된다.
     // 초당 프레임 실행 횟수는: 별다른 설정이 없을 경우 가능한 많이
     //객체가 생성될 때 한 번 실행된다.
