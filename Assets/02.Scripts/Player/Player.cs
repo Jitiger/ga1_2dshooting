@@ -2,37 +2,38 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // 캡슐화
-    // - 데이터 은닉
-    // - 메서드를 통한 상태 변경
     [SerializeField] private int _health = 100;
+
+    [Header("피격 사운드")]
+    [SerializeField] private AudioSource _damagedAudioSource;
+
+    [Header("플레이어 죽음 이펙트")]
     [SerializeField] private GameObject _playerDeathEffectPrefab;
-    public int Health => _health; // 람다식 문법을 활용한 읽기 전용 프로퍼티
 
-    // 잘 설계된 클래스는
-    // - 필드 (인스턴스 변수)
-    // - 필드에 잘못된 값이 할당되지 않게 막고, 정상적으로 동작하는 메서드
+    public int Health => _health;
 
-    // getter/setter : 특정 데이터를 get/set 해주는 메서드\
-    /*
-     public void SetHealth(int value)
-     {
-        _health = value;
-    }
-
-    public int GetHealth()
-    {
-        return _health;
-    }
-    */
     public void TakeDamage(int damage)
     {
         _health -= damage;
 
         if (_health <= 0)
         {
-            Instantiate(_playerDeathEffectPrefab, transform.position, Quaternion.identity);
+            if (_playerDeathEffectPrefab != null)
+            {
+                Instantiate(
+                    _playerDeathEffectPrefab,
+                    transform.position,
+                    Quaternion.identity
+                );
+            }
+
             Destroy(gameObject);
+            return;
+        }
+
+        if (_damagedAudioSource != null)
+        {
+            _damagedAudioSource.Play();
         }
     }
 

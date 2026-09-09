@@ -17,6 +17,9 @@ public class Item : MonoBehaviour
     [Header("아이템 획득 이펙트")]
     [SerializeField] private GameObject _pickupEffectPrefab;
 
+    [Header("아이템 획득 사운드")]
+    [SerializeField] private AudioClip _pickupSound;
+
     private float _timer = 0f;
     private Transform _player;
 
@@ -61,6 +64,15 @@ public class Item : MonoBehaviour
 
         ApplyEffect(other);
 
+        // 아이템 획득 사운드
+        if (_pickupSound != null)
+        {
+            AudioSource.PlayClipAtPoint(
+                _pickupSound,
+                transform.position
+            );
+        }
+
         // 아이템 획득 이펙트 생성
         if (_pickupEffectPrefab != null)
         {
@@ -74,9 +86,6 @@ public class Item : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // 심화 과제 1. 퍼사드 패턴
-    // 심화 과제 2. 아이템 종류가 조합에 의해 폭발적으로 증가할 경우에는 조합 패턴 사용
-    // 포트폴리오에서 가장 중요한 것은 게임 구현 완성도
     private void ApplyEffect(Collider2D other)
     {
         switch (_itemType)

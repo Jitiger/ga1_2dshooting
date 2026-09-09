@@ -113,6 +113,7 @@ MonoBehaviour:
   _moveSpeedIncrease: 0
   _attackSpeedIncrease: 0.2
   _pickupEffectPrefab: {fileID: 2353600328335836179, guid: ceec7516237b4104b94300043ca39784, type: 3}
+  _pickupSound: {fileID: 8300000, guid: 41f5367cc6c772345ab6d3f757b20772, type: 3}
 --- !u!60 &-6707350467788224159
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -159,10 +160,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.25}
-      - {x: -0.5, y: 0}
-      - {x: 0, y: -0.25}
-      - {x: 0.5, y: 0}
+    - - {x: 0.82148147, y: -0.48212957}
+      - {x: -0.106174946, y: 0.6039181}
+      - {x: -0.7123511, y: 0.25954247}
+      - {x: -0.1333766, y: -0.70364666}
+      - {x: -0.33386278, y: -1.4941187}
+      - {x: 0.44829726, y: -2.1847572}
+      - {x: 1.4319866, y: -1.4156747}
   m_UseDelaunayMesh: 1
 --- !u!95 &-1295366515011003471
 Animator:

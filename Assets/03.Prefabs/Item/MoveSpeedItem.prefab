@@ -113,6 +113,7 @@ MonoBehaviour:
   _moveSpeedIncrease: 0.3
   _attackSpeedIncrease: 0
   _pickupEffectPrefab: {fileID: 5112403345868107898, guid: 6f34ef0d986e9db4199cf75805f79753, type: 3}
+  _pickupSound: {fileID: 8300000, guid: 41f5367cc6c772345ab6d3f757b20772, type: 3}
 --- !u!60 &8704060058958836824
 PolygonCollider2D:
   m_ObjectHideFlags: 0
