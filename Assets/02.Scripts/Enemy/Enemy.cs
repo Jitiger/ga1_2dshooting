@@ -3,6 +3,8 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
+    //Todo; 에너미가 피격당할때마다 플레이
+    private AudioSource _damagedAudioSource;
     [Header("적 체력")]
     [field: SerializeField]
     public int Health { get; private set; } = 100;
@@ -29,6 +31,7 @@ public abstract class Enemy : MonoBehaviour
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        //_audioSource = GetComponent<AudioSource>();
 
         if (_spriteRenderer != null)
         {
@@ -80,7 +83,6 @@ public abstract class Enemy : MonoBehaviour
                     Quaternion.identity
                 );
             }
-
             Destroy(gameObject, 0.2f);
         }
     }
@@ -109,7 +111,6 @@ public abstract class Enemy : MonoBehaviour
         {
             player.TakeDamage(_damage);
         }
-
         Destroy(gameObject);
     }
 }
