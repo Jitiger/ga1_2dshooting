@@ -11,7 +11,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 6756527906253368801}
-    m_Position: {x: 359.47784, y: 128.9671, z: 0}
+    m_Position: {x: 360, y: 130, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -51,7 +51,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: move
+  m_Name: attack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -64,7 +64,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: dc576f15cea28fd4f827d9cad366d13b, type: 2}
+  m_Motion: {fileID: 7400000, guid: 538fe8639b8d00349b35b8800f3fca0f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

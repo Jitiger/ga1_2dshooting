@@ -108,10 +108,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 159c050e50e8a604f8a9960c3f92cf93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DownwardEnemy
-  _health: 100
+  <Health>k__BackingField: 100
   _moveSpeed: 3
   _damage: 5
-  _enemyDeathEffectPrefab: {fileID: 8194992990867289339, guid: 99bc28c0d45f51c4fbac01080b73edc7, type: 3}
+  _hitColor: {r: 0.6, g: 0.3, b: 0.3, a: 1}
+  _hitDuration: 0.1
+  _enemyDeathEffectPrefab: {fileID: 2353600328335836179, guid: ceec7516237b4104b94300043ca39784, type: 3}
 --- !u!50 &-5776418443637507562
 Rigidbody2D:
   serializedVersion: 5

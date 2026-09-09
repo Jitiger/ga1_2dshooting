@@ -51,9 +51,9 @@ MonoBehaviour:
     Weight: 30
   - EnemyPrefab: {fileID: 5240536689709595280, guid: 86a0d9c643390804798b3cc67aa464a7, type: 3}
     Weight: 20
-  _spawnInterval: 1
+  _spawnInterval: 3
   _spawnMaxPositionX: 2
   _spawnMinPositionX: -2
   _spawnMaxPositionY: 9
   _spawnMinPositionY: 5
-  _enemyCount: 5
+  _enemyCount: 3

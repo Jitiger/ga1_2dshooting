@@ -1,20 +1,39 @@
+using System.Collections;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    [field: SerializeField] public int Health { get; private set; } = 100;
+    [Header("적 체력")]
+    [field: SerializeField]
+    public int Health { get; private set; } = 100;
+
+    public bool IsDead => Health <= 0;
+
+    [Header("적 능력치")]
     [SerializeField] protected float _moveSpeed;
     [SerializeField] protected int _damage;
 
-    private Animator _animator;
-    private bool _isDead = false;
+    [Header("피격 효과")]
+    [SerializeField] private Color _hitColor = new Color(0.6f, 0.3f, 0.3f, 1f);
+    [SerializeField] private float _hitDuration = 0.1f;
 
-    // 죽었을때 생성할 이펙트 프리팹
+    [Header("죽음 이펙트")]
     [SerializeField] private GameObject _enemyDeathEffectPrefab;
+
+    private SpriteRenderer _spriteRenderer;
+
+    private Color _originalColor;
+
+    private Coroutine _hitCoroutine;
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (_spriteRenderer != null)
+        {
+            _originalColor = _spriteRenderer.color;
+        }
     }
 
     private void Update()
@@ -26,23 +45,26 @@ public abstract class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (_isDead)
+        if (IsDead)
         {
             return;
         }
 
         Health -= damage;
 
-        // 피격 애니메이션 실행
-        if (_animator != null)
+        // 피격 시 현재 애니메이션은 유지하고 색만 변경
+        if (_spriteRenderer != null)
         {
-            _animator.SetTrigger("Hit");
+            if (_hitCoroutine != null)
+            {
+                StopCoroutine(_hitCoroutine);
+            }
+
+            _hitCoroutine = StartCoroutine(HitEffect());
         }
 
-        if (Health <= 0)
+        if (IsDead)
         {
-            _isDead = true;
-
             ItemDrop itemDrop = GetComponent<ItemDrop>();
 
             if (itemDrop != null)
@@ -50,10 +72,28 @@ public abstract class Enemy : MonoBehaviour
                 itemDrop.Drop();
             }
 
-            Instantiate(_enemyDeathEffectPrefab, transform.position, Quaternion.identity);
-            // Hit 애니메이션을 잠깐 보여준 뒤 삭제
+            if (_enemyDeathEffectPrefab != null)
+            {
+                Instantiate(
+                    _enemyDeathEffectPrefab,
+                    transform.position,
+                    Quaternion.identity
+                );
+            }
+
             Destroy(gameObject, 0.2f);
         }
+    }
+
+    private IEnumerator HitEffect()
+    {
+        _spriteRenderer.color = _hitColor;
+
+        yield return new WaitForSeconds(_hitDuration);
+
+        _spriteRenderer.color = _originalColor;
+
+        _hitCoroutine = null;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -69,6 +109,7 @@ public abstract class Enemy : MonoBehaviour
         {
             player.TakeDamage(_damage);
         }
+
         Destroy(gameObject);
     }
 }
