@@ -141,7 +141,7 @@ MonoBehaviour:
   _damage: 10
   _hitColor: {r: 0.6, g: 0.3, b: 0.3, a: 1}
   _hitDuration: 0.1
-  _damagedSound: {fileID: 0}
+  _damagedSound: {fileID: 8300000, guid: c0720586c040ac6459a48d19b25e1554, type: 3}
   _damagedVolume: 1
   _enemyDeathEffectPrefab: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
 --- !u!114 &-8413910627130090316

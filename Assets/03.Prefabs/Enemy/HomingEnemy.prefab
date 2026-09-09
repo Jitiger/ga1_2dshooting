@@ -114,7 +114,8 @@ MonoBehaviour:
   _hitColor: {r: 0.6, g: 0.3, b: 0.3, a: 1}
   _hitDuration: 0.1
   _damagedSound: {fileID: 8300000, guid: 71d7aa5bfa7b9f74e99e63a3506c6d20, type: 3}
-  _enemyDeathEffectPrefab: {fileID: 6263782476919498309, guid: 1fd2749f2a4056446881dce86ed70c39, type: 3}
+  _damagedVolume: 1
+  _enemyDeathEffectPrefab: {fileID: 2353600328335836179, guid: b907586ab677c124d8b17db93f677179, type: 3}
 --- !u!61 &-6023795086904829799
 BoxCollider2D:
   m_ObjectHideFlags: 0
