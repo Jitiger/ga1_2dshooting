@@ -3,8 +3,89 @@ guid: 6517f56f4e21efb4099f97cee5f5a24e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5740368567851553500
-    second: "\uBE68\uAC15\uD3EC\uC158_0"
+      213: -7930571331049095873
+    second: RedPotion_0
+  - first:
+      213: 7325149613721928663
+    second: RedPotion_1
+  - first:
+      213: -4142286177044575733
+    second: RedPotion_2
+  - first:
+      213: -2708458876062027851
+    second: RedPotion_3
+  - first:
+      213: 1292485250842499244
+    second: RedPotion_4
+  - first:
+      213: -7822232950111332266
+    second: RedPotion_5
+  - first:
+      213: 2729543659831185606
+    second: RedPotion_6
+  - first:
+      213: 6039647893418571954
+    second: RedPotion_7
+  - first:
+      213: 4568682581580043625
+    second: RedPotion_8
+  - first:
+      213: 8647380056535330659
+    second: RedPotion_9
+  - first:
+      213: 1946539255467323355
+    second: RedPotion_10
+  - first:
+      213: 5455481732912660119
+    second: RedPotion_11
+  - first:
+      213: -7539590122170614235
+    second: RedPotion_12
+  - first:
+      213: -2261365532327887098
+    second: RedPotion_13
+  - first:
+      213: 4522063659260025214
+    second: RedPotion_14
+  - first:
+      213: 8062049958922770100
+    second: RedPotion_15
+  - first:
+      213: -9035511103349256767
+    second: RedPotion_16
+  - first:
+      213: 4982140405391659381
+    second: RedPotion_17
+  - first:
+      213: -835701580369572301
+    second: RedPotion_18
+  - first:
+      213: -774900110852309414
+    second: RedPotion_19
+  - first:
+      213: 3573145522071453678
+    second: RedPotion_20
+  - first:
+      213: 3840783499901643072
+    second: RedPotion_21
+  - first:
+      213: 2318903471497286968
+    second: RedPotion_22
+  - first:
+      213: 5443481799788337247
+    second: RedPotion_23
+  - first:
+      213: -1456840867279649718
+    second: RedPotion_24
+  - first:
+      213: -1363158235777200635
+    second: RedPotion_25
+  - first:
+      213: -5756074625213034479
+    second: RedPotion_26
+  - first:
+      213: -4717266266022337457
+    second: RedPotion_27
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +118,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 2
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -126,23 +207,133 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uBE68\uAC15\uD3EC\uC158_0"
+      name: RedPotion_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 28
-        height: 28
+        y: 512
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cd21c967cc2e9af40800000000000000
-      internalID: 5740368567851553500
+      spriteID: f3dfbe27463f0f190800000000000000
+      internalID: -7930571331049095873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedPotion_1
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d34c7c63c828a560800000000000000
+      internalID: 7325149613721928663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedPotion_2
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0a4f333ba4a386c0800000000000000
+      internalID: -4142286177044575733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedPotion_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bfa193900f996ad0800000000000000
+      internalID: -2708458876062027851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedPotion_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca816eddc74dfe110800000000000000
+      internalID: 1292485250842499244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedPotion_5
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 658124a6398d17390800000000000000
+      internalID: -7822232950111332266
       vertices: []
       indices: 
       edges: []
@@ -151,7 +342,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 4ea566ed0193f3d48af2bfc0e9952e57
     internalID: 0
     vertices: []
     indices: 
@@ -159,9 +350,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":3.0,"y":2.0},"gridSpriteSize":{"x":512.0,"y":512.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      "\uBE68\uAC15\uD3EC\uC158_0": 5740368567851553500
+      RedPotion_0: -7930571331049095873
+      RedPotion_1: 7325149613721928663
+      RedPotion_2: -4142286177044575733
+      RedPotion_3: -2708458876062027851
+      RedPotion_4: 1292485250842499244
+      RedPotion_5: -7822232950111332266
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
