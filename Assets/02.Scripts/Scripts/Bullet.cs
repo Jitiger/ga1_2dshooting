@@ -1,7 +1,10 @@
+using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    private AudioSource _audioSource;
     public int Damage;
 
     // 총알 이동 속도
@@ -14,6 +17,14 @@ public class Bullet : MonoBehaviour
         transform.Translate(
             direction * MoveSpeed * Time.deltaTime
         );
+    }
+
+    private void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.pitch = UnityEngine.Random.Range(-1f, 1.5f);
+        _audioSource.Play();
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)

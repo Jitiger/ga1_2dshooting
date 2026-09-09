@@ -114,6 +114,7 @@ MonoBehaviour:
   _damage: 5
   _hitColor: {r: 0.6, g: 0.3, b: 0.3, a: 1}
   _hitDuration: 0.1
+  _damagedSound: {fileID: 8300000, guid: 994d870bc0596e64293e525cb0c8ef6b, type: 3}
   _enemyDeathEffectPrefab: {fileID: 2353600328335836179, guid: ceec7516237b4104b94300043ca39784, type: 3}
 --- !u!50 &-5776418443637507562
 Rigidbody2D:

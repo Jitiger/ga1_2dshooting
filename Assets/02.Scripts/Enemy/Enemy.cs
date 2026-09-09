@@ -3,11 +3,8 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    //Todo; 에너미가 피격당할때마다 플레이
-    private AudioSource _damagedAudioSource;
     [Header("적 체력")]
-    [field: SerializeField]
-    public int Health { get; private set; } = 100;
+    [field: SerializeField] public int Health { get; private set; } = 100;
 
     public bool IsDead => Health <= 0;
 
@@ -17,21 +14,23 @@ public abstract class Enemy : MonoBehaviour
 
     [Header("피격 효과")]
     [SerializeField] private Color _hitColor = new Color(0.6f, 0.3f, 0.3f, 1f);
+
     [SerializeField] private float _hitDuration = 0.1f;
+
+    [Header("피격 사운드")]
+    [SerializeField] private AudioClip _damagedSound;
+    [SerializeField] private float _damagedVolume = 1f;
 
     [Header("죽음 이펙트")]
     [SerializeField] private GameObject _enemyDeathEffectPrefab;
 
     private SpriteRenderer _spriteRenderer;
-
     private Color _originalColor;
-
     private Coroutine _hitCoroutine;
 
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        //_audioSource = GetComponent<AudioSource>();
 
         if (_spriteRenderer != null)
         {
@@ -54,6 +53,9 @@ public abstract class Enemy : MonoBehaviour
         }
 
         Health -= damage;
+
+        // 피격 사운드
+        PlayDamagedSound();
 
         // 피격 시 현재 애니메이션은 유지하고 색만 변경
         if (_spriteRenderer != null)
@@ -83,8 +85,36 @@ public abstract class Enemy : MonoBehaviour
                     Quaternion.identity
                 );
             }
+
             Destroy(gameObject, 0.2f);
         }
+    }
+
+    private void PlayDamagedSound()
+    {
+        if (_damagedSound == null)
+        {
+            return;
+        }
+
+        GameObject soundObject =
+            new GameObject("EnemyDamagedSound");
+
+        AudioSource audioSource =
+            soundObject.AddComponent<AudioSource>();
+
+        audioSource.clip = _damagedSound;
+        audioSource.volume = _damagedVolume;
+
+        // 2D 사운드
+        audioSource.spatialBlend = 0f;
+
+        audioSource.Play();
+
+        Destroy(
+            soundObject,
+            _damagedSound.length
+        );
     }
 
     private IEnumerator HitEffect()
@@ -111,6 +141,7 @@ public abstract class Enemy : MonoBehaviour
         {
             player.TakeDamage(_damage);
         }
+
         Destroy(gameObject);
     }
 }
