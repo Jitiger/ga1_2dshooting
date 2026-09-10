@@ -85,7 +85,10 @@ public abstract class Enemy : MonoBehaviour
                     Quaternion.identity
                 );
             }
-
+            // 싱글톤 패턴
+            // 1. 전역적으로 접근 가능하다.
+            // 2. 인스턴스(생성된 객체)가 하나임을 보장한다.
+            ScoreManager.Instance.AddScore(100);
             Destroy(gameObject, 0.2f);
         }
     }
