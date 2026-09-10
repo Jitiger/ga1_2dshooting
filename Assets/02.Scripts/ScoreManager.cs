@@ -1,39 +1,68 @@
-using System;
-using System.Net.Mime;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class ScoreManager : MonoBehaviour
 {
-    // static(정적)
-    public static ScoreManager Instance;
-    // 관리: 특정 데이터에 대한 무결성과 생성, 읽기, 수정, 삭제 등과 관련된 게임 로직
+    // 싱글톤 패턴
+    // 1. 전역적으로 접근 가능하다.
+    // 2. 인스턴스(생성된 객체)가 하나임을 보장한다.
+    private static ScoreManager _instance = null;
+    public static ScoreManager Instance => _instance;
+
+    // 관리: 특정 데이터에 대한 무결성과 생성,읽기,수정,삭제 등과 관련된 게임 로직
     private int _bestScore;
-    private int _currentScore;
-    // UI 책임 추가
+    private int _currentScore = 0;
+
+    // 저장키
+    private const string SaveKey = "BestScore";
+
+    // UI 책임 추가 (텍스트메시 프로 참조)
     [SerializeField] private TextMeshProUGUI _bestScoreTextUI;
     [SerializeField] private TextMeshProUGUI _currentScoreTextUI;
 
+
     private void Awake()
     {
-        Instance = this;
+        // 늦게 태어난 매니저는 나는 늦었네~ 하면서 삭제
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        _instance = this;
     }
-    public int GetScore()
+
+    private void Start()
     {
-        return _currentScore;
+        // 입력: Input.
+        // 저장/불러오기: PlayerPrefs
+
+        if (PlayerPrefs.HasKey(SaveKey))
+        {
+            _bestScore = PlayerPrefs.GetInt(SaveKey);
+        }
+
+        _bestScore = PlayerPrefs.GetInt(SaveKey, 0);
+        Refresh();
     }
+
 
     public void AddScore(int score)
     {
+        if (score <= 0) return;
+
         _currentScore += score;
         if (_currentScore > _bestScore)
         {
             _bestScore = _currentScore;
+
+            // 저장: PlayerPrefs.Set~ 시리즈를 이용해서 int/float/string을 저장 가능하다.
+            // 내 컴퓨터 어딘가에 저장이 된다..
+            PlayerPrefs.SetInt(SaveKey, _bestScore);
+            PlayerPrefs.Save();
         }
-    }
-    private void Update()
-    {
+
         Refresh();
     }
 
