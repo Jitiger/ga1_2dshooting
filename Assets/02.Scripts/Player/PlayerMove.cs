@@ -7,8 +7,7 @@ public class PlayerMove : MonoBehaviour
     private Animator _animator;
 
     [Header("플레이어 이동 속도")]
-    [field: SerializeField]
-    public float Speed { get; private set; }
+    [field: SerializeField] public float Speed { get; private set; }
 
     [Header("플레이어 이동 가능 좌표")]
     [SerializeField] private float _maxPositionY;
