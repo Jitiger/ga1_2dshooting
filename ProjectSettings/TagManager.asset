@@ -58,7 +58,7 @@ TagManager:
   - name: Fx
     uniqueID: 3500013649
     locked: 0
-  - name: Ui
+  - name: UI
     uniqueID: 2755803405
     locked: 0
   m_RenderingLayers:

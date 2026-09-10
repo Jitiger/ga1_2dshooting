@@ -13,7 +13,6 @@ public abstract class Enemy : MonoBehaviour
     [Header("적 능력치")]
     [SerializeField] protected float _moveSpeed;
     [SerializeField] protected int _damage;
-
     [Header("피격 효과")]
     [SerializeField] private Color _hitColor = new Color(0.6f, 0.3f, 0.3f, 1f);
     [SerializeField] private float _hitDuration = 0.1f;
