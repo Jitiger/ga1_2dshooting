@@ -29,7 +29,6 @@ public class PlayerFire : MonoBehaviour
 
     private void Update()
     {
-        // 1번 키 자동 발사 ON / OFF
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             AutoFireMode = !AutoFireMode;
@@ -38,10 +37,10 @@ public class PlayerFire : MonoBehaviour
         CoolTimer -= Time.deltaTime;
 
         if (CoolTimer <= 0 &&
-            (Input.GetKeyDown(KeyCode.Space) || AutoFireMode))
+            (Input.GetKeyDown(KeyCode.Space)
+             || AutoFireMode))
         {
             Fire();
-
             SubFire();
 
             CoolTimer = FireRate;
@@ -49,57 +48,35 @@ public class PlayerFire : MonoBehaviour
     }
 
 
-    // Green Bullet
     public void Fire()
     {
-        Bullet rightBullet =
-            BulletPool.Instance.GetBullet(
-                Bullet.BulletType.Main
-            );
+        // Main 오른쪽
+        BulletPool.Instance.GetBullet(
+            BulletType.Main,
+            RightFirePoint.position
+        );
 
-        if (rightBullet != null)
-        {
-            rightBullet.transform.position =
-                RightFirePoint.position;
-        }
-
-        Bullet leftBullet =
-            BulletPool.Instance.GetBullet(
-                Bullet.BulletType.Main
-            );
-
-        if (leftBullet != null)
-        {
-            leftBullet.transform.position =
-                LeftFirePoint.position;
-        }
+        // Main 왼쪽
+        BulletPool.Instance.GetBullet(
+            BulletType.Main,
+            LeftFirePoint.position
+        );
     }
 
 
-    // Red Bullet
     public void SubFire()
     {
-        Bullet subRightBullet =
-            BulletPool.Instance.GetBullet(
-                Bullet.BulletType.Sub
-            );
+        // Sub 오른쪽
+        BulletPool.Instance.GetBullet(
+            BulletType.Sub,
+            SubRightFirePoint.position
+        );
 
-        if (subRightBullet != null)
-        {
-            subRightBullet.transform.position =
-                SubRightFirePoint.position;
-        }
-
-        Bullet subLeftBullet =
-            BulletPool.Instance.GetBullet(
-                Bullet.BulletType.Sub
-            );
-
-        if (subLeftBullet != null)
-        {
-            subLeftBullet.transform.position =
-                SubLeftFirePoint.position;
-        }
+        // Sub 왼쪽
+        BulletPool.Instance.GetBullet(
+            BulletType.Sub,
+            SubLeftFirePoint.position
+        );
     }
 
 

@@ -2,15 +2,6 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public enum BulletType
-    {
-        Main,
-        Sub
-    }
-
-    [Header("총알 종류")]
-    [SerializeField] private BulletType _bulletType;
-
     [Header("이동 속도")]
     [SerializeField] private float _moveSpeed = 10f;
 
@@ -19,24 +10,10 @@ public class Bullet : MonoBehaviour
 
     private AudioSource _audioSource;
 
-    public BulletType Type => _bulletType;
-    public int Damage => _damage;
-
 
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
-    }
-
-
-    private void OnEnable()
-    {
-        // 풀에서 다시 꺼낼 때마다 발사음 재생
-        if (_audioSource != null)
-        {
-            _audioSource.pitch = Random.Range(0.9f, 1.1f);
-            _audioSource.Play();
-        }
     }
 
 
@@ -48,6 +25,25 @@ public class Bullet : MonoBehaviour
     }
 
 
+    public void Spawn(Vector3 position)
+    {
+        // 먼저 위치 지정
+        transform.position = position;
+
+        // 총알 활성화
+        gameObject.SetActive(true);
+
+        // 발사음
+        if (_audioSource != null)
+        {
+            _audioSource.pitch =
+                Random.Range(0.9f, 1.1f);
+
+            _audioSource.Play();
+        }
+    }
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Enemy"))
@@ -55,21 +51,21 @@ public class Bullet : MonoBehaviour
             return;
         }
 
-        Enemy enemy = collision.GetComponent<Enemy>();
+        Enemy enemy =
+            collision.GetComponent<Enemy>();
 
         if (enemy != null)
         {
             enemy.TakeDamage(_damage);
         }
 
-        // Destroy 하지 않고 풀로 반환
+        // Destroy하지 않고 풀로 반환
         gameObject.SetActive(false);
     }
 
 
     private void OnBecameInvisible()
     {
-        // 화면 밖으로 나가면 풀로 반환
         gameObject.SetActive(false);
     }
 }

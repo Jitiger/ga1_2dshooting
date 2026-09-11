@@ -2,18 +2,14 @@ using UnityEngine;
 
 public class BulletPool : MonoBehaviour
 {
-    [Header("Main Bullet - Green")]
-    [SerializeField] private Bullet _greenBulletPrefab;
+    [Header("총알 프리팹")]
+    [SerializeField] private Bullet[] _bulletPrefabs;
 
-    [Header("Sub Bullet - Red")]
-    [SerializeField] private Bullet _redBulletPrefab;
-
-    [Header("풀 사이즈")]
+    [Header("총알 종류별 풀 사이즈")]
     [SerializeField] private int _poolSize = 30;
 
 
-    private Bullet[] _greenPool;
-    private Bullet[] _redPool;
+    private Bullet[][] _pools;
 
 
     private static BulletPool _instance;
@@ -23,7 +19,6 @@ public class BulletPool : MonoBehaviour
 
     private void Awake()
     {
-        // BulletPool 중복 생성 방지
         if (_instance != null)
         {
             Destroy(gameObject);
@@ -32,75 +27,53 @@ public class BulletPool : MonoBehaviour
 
         _instance = this;
 
-        // Green / Red 총알 저장 공간 생성
-        _greenPool = new Bullet[_poolSize];
-        _redPool = new Bullet[_poolSize];
+        // 총알 종류 수만큼 풀 생성
+        _pools = new Bullet[_bulletPrefabs.Length][];
 
-        // Green Bullet 미리 생성
-        for (int i = 0; i < _poolSize; i++)
+        for (int i = 0; i < _bulletPrefabs.Length; i++)
         {
-            Bullet bullet = Instantiate(
-                _greenBulletPrefab,
-                transform
-            );
+            // i번째 총알 전용 풀 생성
+            _pools[i] = new Bullet[_poolSize];
 
-            bullet.gameObject.SetActive(false);
+            // 총알 미리 생성
+            for (int j = 0; j < _poolSize; j++)
+            {
+                Bullet bullet = Instantiate(_bulletPrefabs[i], transform);
 
-            _greenPool[i] = bullet;
-        }
+                bullet.gameObject.SetActive(false);
 
-        // Red Bullet 미리 생성
-        for (int i = 0; i < _poolSize; i++)
-        {
-            Bullet bullet = Instantiate(
-                _redBulletPrefab,
-                transform
-            );
-
-            bullet.gameObject.SetActive(false);
-
-            _redPool[i] = bullet;
+                _pools[i][j] = bullet;
+            }
         }
     }
 
 
-    public Bullet GetBullet(Bullet.BulletType type)
+    public Bullet GetBullet(
+        BulletType type,
+        Vector3 position
+    )
     {
-        if (type == Bullet.BulletType.Main)
-        {
-            return GetBulletFromPool(_greenPool);
-        }
+        int index = (int)type;
 
-        if (type == Bullet.BulletType.Sub)
-        {
-            return GetBulletFromPool(_redPool);
-        }
+        Bullet[] pool = _pools[index];
 
-        return null;
-    }
-
-
-    private Bullet GetBulletFromPool(Bullet[] pool)
-    {
         foreach (Bullet bullet in pool)
         {
-            // 혹시 Destroy된 총알이 있다면 건너뛰기
             if (bullet == null)
             {
                 continue;
             }
 
-            // 현재 사용하지 않는 총알 찾기
             if (bullet.gameObject.activeSelf == false)
             {
-                bullet.gameObject.SetActive(true);
+                bullet.Spawn(position);
 
                 return bullet;
             }
         }
 
         Debug.LogWarning(
-            "Bullet Pool에 사용할 수 있는 총알이 없습니다."
+            $"{type} 총알 Pool이 부족합니다."
         );
 
         return null;
