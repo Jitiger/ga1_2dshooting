@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7ac66b63d33e974f97ca1fa6b9992a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawn
+  _spawnDatas:
+    EnemyPrefab: {fileID: 0}
+    Weight: 0
   _enemySpawnData:
   - EnemyPrefab: {fileID: 4501361352314430654, guid: f1d4246572265f14fb30e7bd9462fe2e, type: 3}
     Weight: 50
