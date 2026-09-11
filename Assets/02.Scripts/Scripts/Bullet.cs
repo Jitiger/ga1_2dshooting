@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -17,6 +18,7 @@ public class Bullet : MonoBehaviour
     [Header("데미지")]
     [SerializeField] private int _damage = 50;
 
+    private AudioSource _audioSource;
     public BulletType Type => _bulletType;
     public int Damage => _damage;
 
@@ -25,7 +27,12 @@ public class Bullet : MonoBehaviour
         transform.Translate(Vector3.up * _moveSpeed * Time.deltaTime);
     }
 
-    private void OnEnable()
+    private void Awake()
+    {
+        _audioSourse = GetComponent<AudioSource>();
+    }
+
+    private void OnSpawn()
     {
     }
 

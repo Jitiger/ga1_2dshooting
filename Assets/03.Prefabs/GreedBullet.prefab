@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5829474389763245522}
   m_Layer: 8
   m_Name: GreedBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,8 +107,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf6cbb88f0749143a4148d2f58d6673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
-  Damage: 10
-  MoveSpeed: 2
+  _bulletType: 0
+  _moveSpeed: 10
+  _damage: 50
 --- !u!50 &5701377173419041393
 Rigidbody2D:
   serializedVersion: 5
