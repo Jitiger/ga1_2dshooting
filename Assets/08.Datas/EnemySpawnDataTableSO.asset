@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639ce6ba084ae08428a7c915501e2fb7, type: 3}
   m_Name: EnemySpawnDataTableSO
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawnDataTableSO
-  spawnDatas: []
+  spawnDatas:
+  - EnemyPrefab: {fileID: 2212391364570823043, guid: e1b4dc5e52bd7ab4392e67ffa04a8f5f, type: 3}
+    Weight: 20
+  - EnemyPrefab: {fileID: 1182114202960453485, guid: 0d27aa838132bb748be88800ae96acd5, type: 3}
+    Weight: 30
+  - EnemyPrefab: {fileID: 7018213949536238787, guid: 86a0d9c643390804798b3cc67aa464a7, type: 3}
+    Weight: 50

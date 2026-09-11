@@ -16,7 +16,6 @@ public class PlayerFire : MonoBehaviour
     [field: SerializeField]
     public float FireRate { get; private set; } = 0.5f;
 
-
     public float CoolTimer = 0f;
 
     public bool AutoFireMode = false;
@@ -30,16 +29,14 @@ public class PlayerFire : MonoBehaviour
 
     private void Update()
     {
-        // 1번 키로 자동발사 ON / OFF
+        // 1번 키 자동 발사 ON / OFF
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             AutoFireMode = !AutoFireMode;
         }
 
-        // 쿨타임 감소
         CoolTimer -= Time.deltaTime;
 
-        // 발사 가능 상태
         if (CoolTimer <= 0 &&
             (Input.GetKeyDown(KeyCode.Space) || AutoFireMode))
         {
@@ -55,9 +52,10 @@ public class PlayerFire : MonoBehaviour
     // Green Bullet
     public void Fire()
     {
-        // 오른쪽 Main 총알
         Bullet rightBullet =
-            BulletPool.Instance.GetBullet(Bullet.BulletType.Main);
+            BulletPool.Instance.GetBullet(
+                Bullet.BulletType.Main
+            );
 
         if (rightBullet != null)
         {
@@ -65,9 +63,10 @@ public class PlayerFire : MonoBehaviour
                 RightFirePoint.position;
         }
 
-        // 왼쪽 Main 총알
         Bullet leftBullet =
-            BulletPool.Instance.GetBullet(Bullet.BulletType.Main);
+            BulletPool.Instance.GetBullet(
+                Bullet.BulletType.Main
+            );
 
         if (leftBullet != null)
         {
@@ -80,9 +79,10 @@ public class PlayerFire : MonoBehaviour
     // Red Bullet
     public void SubFire()
     {
-        // 오른쪽 Sub 총알
         Bullet subRightBullet =
-            BulletPool.Instance.GetBullet(Bullet.BulletType.Sub);
+            BulletPool.Instance.GetBullet(
+                Bullet.BulletType.Sub
+            );
 
         if (subRightBullet != null)
         {
@@ -90,9 +90,10 @@ public class PlayerFire : MonoBehaviour
                 SubRightFirePoint.position;
         }
 
-        // 왼쪽 Sub 총알
         Bullet subLeftBullet =
-            BulletPool.Instance.GetBullet(Bullet.BulletType.Sub);
+            BulletPool.Instance.GetBullet(
+                Bullet.BulletType.Sub
+            );
 
         if (subLeftBullet != null)
         {
@@ -106,7 +107,6 @@ public class PlayerFire : MonoBehaviour
     {
         FireRate -= amount;
 
-        // 최소 공격속도 제한
         if (FireRate < 0.1f)
         {
             FireRate = 0.1f;

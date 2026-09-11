@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -19,39 +18,54 @@ public class Bullet : MonoBehaviour
     [SerializeField] private int _damage = 50;
 
     private AudioSource _audioSource;
+
     public BulletType Type => _bulletType;
     public int Damage => _damage;
 
-    private void Update()
-    {
-        transform.Translate(Vector3.up * _moveSpeed * Time.deltaTime);
-    }
 
     private void Awake()
     {
-        _audioSourse = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
-    private void OnSpawn()
+
+    private void OnEnable()
     {
+        // 풀에서 다시 꺼낼 때마다 발사음 재생
+        if (_audioSource != null)
+        {
+            _audioSource.pitch = Random.Range(0.9f, 1.1f);
+            _audioSource.Play();
+        }
     }
+
+
+    private void Update()
+    {
+        transform.Translate(
+            Vector3.up * _moveSpeed * Time.deltaTime
+        );
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (!collision.CompareTag("Enemy"))
         {
-            // Enemy에 TakeDamage가 있다면 사용
-            Enemy enemy = collision.GetComponent<Enemy>();
-
-            if (enemy != null)
-            {
-                enemy.TakeDamage(_damage);
-            }
-
-            // Destroy하지 않고 풀로 반환
-            gameObject.SetActive(false);
+            return;
         }
+
+        Enemy enemy = collision.GetComponent<Enemy>();
+
+        if (enemy != null)
+        {
+            enemy.TakeDamage(_damage);
+        }
+
+        // Destroy 하지 않고 풀로 반환
+        gameObject.SetActive(false);
     }
+
 
     private void OnBecameInvisible()
     {
