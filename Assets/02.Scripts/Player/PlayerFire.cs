@@ -6,26 +6,22 @@ public class PlayerFire : MonoBehaviour
     public Transform RightFirePoint;
     public Transform LeftFirePoint;
 
-
     [Header("Sub Fire Point")]
     public Transform SubRightFirePoint;
     public Transform SubLeftFirePoint;
 
-
     [Header("Fire Setting")]
-    [field: SerializeField]
-    public float FireRate { get; private set; } = 0.5f;
+    [SerializeField] private float _fireRate = 0.5f;
+
+    public float FireRate => _fireRate;
 
     public float CoolTimer = 0f;
-
     public bool AutoFireMode = false;
-
 
     private void Start()
     {
-        CoolTimer = FireRate;
+        CoolTimer = _fireRate;
     }
-
 
     private void Update()
     {
@@ -37,16 +33,14 @@ public class PlayerFire : MonoBehaviour
         CoolTimer -= Time.deltaTime;
 
         if (CoolTimer <= 0 &&
-            (Input.GetKeyDown(KeyCode.Space)
-             || AutoFireMode))
+            (Input.GetKeyDown(KeyCode.Space) || AutoFireMode))
         {
             Fire();
             SubFire();
 
-            CoolTimer = FireRate;
+            CoolTimer = _fireRate;
         }
     }
-
 
     public void Fire()
     {
@@ -63,7 +57,6 @@ public class PlayerFire : MonoBehaviour
         );
     }
 
-
     public void SubFire()
     {
         // Sub 오른쪽
@@ -79,14 +72,13 @@ public class PlayerFire : MonoBehaviour
         );
     }
 
-
     public void IncreaseAttackSpeed(float amount)
     {
-        FireRate -= amount;
+        _fireRate -= amount;
 
-        if (FireRate < 0.1f)
+        if (_fireRate < 0.1f)
         {
-            FireRate = 0.1f;
+            _fireRate = 0.1f;
         }
     }
 }

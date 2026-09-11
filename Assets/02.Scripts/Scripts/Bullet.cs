@@ -19,9 +19,7 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(
-            Vector3.up * _moveSpeed * Time.deltaTime
-        );
+        transform.Translate(Vector3.up * _moveSpeed * Time.deltaTime);
     }
 
 
@@ -36,8 +34,7 @@ public class Bullet : MonoBehaviour
         // 발사음
         if (_audioSource != null)
         {
-            _audioSource.pitch =
-                Random.Range(0.9f, 1.1f);
+            _audioSource.pitch = Random.Range(0.9f, 1.1f);
 
             _audioSource.Play();
         }

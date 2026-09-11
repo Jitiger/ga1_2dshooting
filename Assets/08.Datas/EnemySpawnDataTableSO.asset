@@ -15,7 +15,7 @@ MonoBehaviour:
   spawnDatas:
   - EnemyPrefab: {fileID: 2212391364570823043, guid: e1b4dc5e52bd7ab4392e67ffa04a8f5f, type: 3}
     Weight: 20
-  - EnemyPrefab: {fileID: 1182114202960453485, guid: 0d27aa838132bb748be88800ae96acd5, type: 3}
+  - EnemyPrefab: {fileID: 5589314308733683416, guid: f1d4246572265f14fb30e7bd9462fe2e, type: 3}
     Weight: 30
   - EnemyPrefab: {fileID: 7018213949536238787, guid: 86a0d9c643390804798b3cc67aa464a7, type: 3}
     Weight: 50

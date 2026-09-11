@@ -1698,7 +1698,7 @@ MonoBehaviour:
   LeftFirePoint: {fileID: 430750321}
   SubRightFirePoint: {fileID: 300126969}
   SubLeftFirePoint: {fileID: 1429504588}
-  <FireRate>k__BackingField: 0.2
+  _fireRate: 0.5
   CoolTimer: 0
   AutoFireMode: 0
 --- !u!114 &1381402018
@@ -1968,7 +1968,7 @@ GameObject:
   - component: {fileID: 1415972925}
   - component: {fileID: 1415972924}
   m_Layer: 0
-  m_Name: GreenBulletPool
+  m_Name: BulletPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1986,8 +1986,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b34f14256948e45b8b07ac63517dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletPool
-  _greenBulletPrefab: {fileID: 6955625085713937347, guid: 7c53ed9f7efa0d641903a8439e2e7215, type: 3}
-  _redBulletPrefab: {fileID: 311350796212748796, guid: 05f2957818932fb4890ff9d59b905260, type: 3}
+  _bulletPrefabs:
+  - {fileID: 6955625085713937347, guid: 7c53ed9f7efa0d641903a8439e2e7215, type: 3}
+  - {fileID: 311350796212748796, guid: 05f2957818932fb4890ff9d59b905260, type: 3}
   _poolSize: 30
 --- !u!4 &1415972925
 Transform:
