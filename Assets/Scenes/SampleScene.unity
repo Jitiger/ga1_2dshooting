@@ -1733,7 +1733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   _health: 100
-  _damagedAudioSource: {fileID: 0}
+  _damagedAudioSource: {fileID: 3573613390265287375, guid: d6f2d484c06bcd14091b17971550a107, type: 3}
   _playerDeathEffectPrefab: {fileID: 2708598583397607911, guid: 6398d43fe79ea0140913dc5530c646af, type: 3}
 --- !u!50 &1381402020
 Rigidbody2D:
@@ -2595,6 +2595,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7152849586650004166, guid: 9da19f8e08245124c95d64197ee691ea, type: 3}
+      propertyPath: _spawnDataTable
+      value: 
+      objectReference: {fileID: 11400000, guid: 7bc967438884fb84d808c39deb443fd5, type: 2}
+    - target: {fileID: 7152849586650004166, guid: 9da19f8e08245124c95d64197ee691ea, type: 3}
       propertyPath: _spawnPositionY
       value: 5
       objectReference: {fileID: 0}
@@ -2613,6 +2617,10 @@ PrefabInstance:
     - target: {fileID: 7152849586650004166, guid: 9da19f8e08245124c95d64197ee691ea, type: 3}
       propertyPath: _spawnMinPositionY
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7152849586650004166, guid: 9da19f8e08245124c95d64197ee691ea, type: 3}
+      propertyPath: _spawnDatas.Array.size
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

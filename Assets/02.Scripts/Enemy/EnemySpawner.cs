@@ -93,8 +93,8 @@ public class EnemySpawner : MonoBehaviour
             return null;
         }
 
-        if (_spawnDataTable.Datas == null ||
-            _spawnDataTable.Datas.Length == 0)
+        if (_spawnDataTable.spawnDatas == null ||
+            _spawnDataTable.spawnDatas.Length == 0)
         {
             Debug.LogError(
                 "Enemy Spawn Data가 비어 있음."
@@ -108,7 +108,7 @@ public class EnemySpawner : MonoBehaviour
         int totalWeight = 0;
 
         foreach (EnemySpawnData data
-                 in _spawnDataTable.Datas)
+                 in _spawnDataTable.spawnDatas)
         {
             totalWeight += data.Weight;
         }
@@ -133,7 +133,7 @@ public class EnemySpawner : MonoBehaviour
         int cumulativeWeight = 0;
 
         foreach (EnemySpawnData data
-                 in _spawnDataTable.Datas)
+                 in _spawnDataTable.spawnDatas)
         {
             cumulativeWeight += data.Weight;
 

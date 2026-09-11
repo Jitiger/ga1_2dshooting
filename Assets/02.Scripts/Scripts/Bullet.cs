@@ -1,46 +1,54 @@
-using System;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private AudioSource _audioSource;
-    public int Damage;
+    public enum BulletType
+    {
+        Main,
+        Sub
+    }
 
-    // 총알 이동 속도
-    public float MoveSpeed;
+    [Header("총알 종류")]
+    [SerializeField] private BulletType _bulletType;
+
+    [Header("이동 속도")]
+    [SerializeField] private float _moveSpeed = 10f;
+
+    [Header("데미지")]
+    [SerializeField] private int _damage = 50;
+
+    public BulletType Type => _bulletType;
+    public int Damage => _damage;
 
     private void Update()
     {
-        Vector2 direction = Vector2.up;
-
-        transform.Translate(
-            direction * MoveSpeed * Time.deltaTime
-        );
+        transform.Translate(Vector3.up * _moveSpeed * Time.deltaTime);
     }
 
-    private void Awake()
+    private void OnEnable()
     {
-        _audioSource = GetComponent<AudioSource>();
-        _audioSource.pitch = UnityEngine.Random.Range(-1f, 1.5f);
-        _audioSource.Play();
-
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!other.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy"))
         {
-            return;
+            // Enemy에 TakeDamage가 있다면 사용
+            Enemy enemy = collision.GetComponent<Enemy>();
+
+            if (enemy != null)
+            {
+                enemy.TakeDamage(_damage);
+            }
+
+            // Destroy하지 않고 풀로 반환
+            gameObject.SetActive(false);
         }
+    }
 
-        Enemy enemy = other.GetComponent<Enemy>();
-
-        if (enemy != null)
-        {
-            enemy.TakeDamage(Damage);
-        }
-
-        Destroy(gameObject);
+    private void OnBecameInvisible()
+    {
+        // 화면 밖으로 나가면 풀로 반환
+        gameObject.SetActive(false);
     }
 }
