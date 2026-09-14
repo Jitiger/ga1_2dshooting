@@ -77,7 +77,7 @@ public void AutoMove()
     float minDistance = float.MaxValue;
     GameObject target = null;
     GameObject[] FindEnemy = GameObject.FindGameObjectsWithTag("Enemy");
-    float playerpositionY = GameObject.FindGameObjectWithTag("Player").transform.position.y; 
+    float playerpositionY = GameObject.FindGameObjectWithTag("Player").transform.position.y;
     for (int i = 0; i < FindEnemy.Length; i++)
     {
         float distance = Mathf.Abs(FindEnemy[i].transform.position.y - playerpositionY);

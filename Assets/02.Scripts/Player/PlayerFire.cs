@@ -13,33 +13,36 @@ public class PlayerFire : MonoBehaviour
     [Header("Fire Setting")]
     [SerializeField] private float _fireRate = 0.5f;
 
-    public float FireRate => _fireRate;
+    private float _coolTimer;
+    private bool _isAutoFireMode;
 
-    public float CoolTimer = 0f;
-    public bool AutoFireMode = false;
+    public float FireRate => _fireRate;
 
     private void Start()
     {
-        CoolTimer = _fireRate;
+        _coolTimer = _fireRate;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            AutoFireMode = !AutoFireMode;
-        }
+        _coolTimer -= Time.deltaTime;
 
-        CoolTimer -= Time.deltaTime;
+        bool manualFireInput = Input.GetKeyDown(KeyCode.Space);
 
-        if (CoolTimer <= 0 &&
-            (Input.GetKeyDown(KeyCode.Space) || AutoFireMode))
+        if (_coolTimer <= 0f &&
+            (manualFireInput || _isAutoFireMode))
         {
             Fire();
             SubFire();
 
-            CoolTimer = _fireRate;
+            _coolTimer = _fireRate;
         }
+    }
+
+    // UI_AutoButton에서 자동 공격 상태를 전달받는다.
+    public void SetAuto(bool isAutoMode)
+    {
+        _isAutoFireMode = isAutoMode;
     }
 
     public void Fire()
