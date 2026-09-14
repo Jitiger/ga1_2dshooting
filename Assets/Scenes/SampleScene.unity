@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -270,6 +270,7 @@ GameObject:
   - component: {fileID: 244608904}
   - component: {fileID: 244608907}
   - component: {fileID: 244608908}
+  - component: {fileID: 244608909}
   m_Layer: 5
   m_Name: UI_AutoButton
   m_TagString: Untagged
@@ -352,30 +353,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 244608907}
-        m_TargetAssemblyTypeName: UI_AutoButton, Assembly-CSharp
-        m_MethodName: PlaySound
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 244608907}
-        m_TargetAssemblyTypeName: UI_AutoButton, Assembly-CSharp
-        m_MethodName: PlayAnimation
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &244608905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,7 +405,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UI_AutoButton
   _onSprite: {fileID: 1206005349077091292, guid: 856554da9a43bc140b4efa835f355113, type: 3}
   _offSprite: {fileID: 2475711161320758719, guid: 8c75d4ff93f704447b8c2100116a0fcf, type: 3}
-  _myImage: {fileID: 0}
+--- !u!114 &244608909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244608902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 117d5d8b56e3a39478227fafea98bbd3, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::UI_ButtonClick
   _bumpCurve:
     serializedVersion: 2
     m_Curve:
