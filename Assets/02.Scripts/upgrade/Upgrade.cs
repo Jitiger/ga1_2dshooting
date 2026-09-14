@@ -42,7 +42,7 @@ public class Upgrade
 
     private void Calculate()
     {
-        // Todo: 공식에 따라 변화
+        // 기획자의 공식
         // Value : 기본 밸류 + 레벨 * 증가량 밸류
         // Cost  : 기본 점수 * 증가량 점수 ^ 레벨
 

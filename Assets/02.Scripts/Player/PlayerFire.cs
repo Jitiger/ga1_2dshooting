@@ -18,16 +18,19 @@ public class PlayerFire : MonoBehaviour
 
     public float FireRate => _fireRate;
 
+
     private void Start()
     {
         _coolTimer = _fireRate;
     }
 
+
     private void Update()
     {
         _coolTimer -= Time.deltaTime;
 
-        bool manualFireInput = Input.GetKeyDown(KeyCode.Space);
+        bool manualFireInput =
+            Input.GetKeyDown(KeyCode.Space);
 
         if (_coolTimer <= 0f &&
             (manualFireInput || _isAutoFireMode))
@@ -35,45 +38,55 @@ public class PlayerFire : MonoBehaviour
             Fire();
             SubFire();
 
-            _coolTimer = _fireRate;
+            float finalFireRate =
+                _fireRate -
+                UpgradeManager.Instance
+                    .Upgrades[1]
+                    .CurrentValue;
+
+            if (finalFireRate < 0.1f)
+            {
+                finalFireRate = 0.1f;
+            }
+
+            _coolTimer = finalFireRate;
         }
     }
 
-    // UI_AutoButton에서 자동 공격 상태를 전달받는다.
+
     public void SetAuto(bool isAutoMode)
     {
         _isAutoFireMode = isAutoMode;
     }
 
+
     public void Fire()
     {
-        // Main 오른쪽
         BulletPool.Instance.GetBullet(
             BulletType.Main,
             RightFirePoint.position
         );
 
-        // Main 왼쪽
         BulletPool.Instance.GetBullet(
             BulletType.Main,
             LeftFirePoint.position
         );
     }
 
+
     public void SubFire()
     {
-        // Sub 오른쪽
         BulletPool.Instance.GetBullet(
             BulletType.Sub,
             SubRightFirePoint.position
         );
 
-        // Sub 왼쪽
         BulletPool.Instance.GetBullet(
             BulletType.Sub,
             SubLeftFirePoint.position
         );
     }
+
 
     public void IncreaseAttackSpeed(float amount)
     {

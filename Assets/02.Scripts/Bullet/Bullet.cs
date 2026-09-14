@@ -19,29 +19,33 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(Vector3.up * _moveSpeed * Time.deltaTime);
+        transform.Translate(
+            Vector3.up *
+            _moveSpeed *
+            Time.deltaTime
+        );
     }
 
 
     public void Spawn(Vector3 position)
     {
-        // 먼저 위치 지정
         transform.position = position;
 
-        // 총알 활성화
         gameObject.SetActive(true);
 
-        // 발사음
         if (_audioSource != null)
         {
-            _audioSource.pitch = Random.Range(0.9f, 1.1f);
+            _audioSource.pitch =
+                Random.Range(0.9f, 1.1f);
 
             _audioSource.Play();
         }
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(
+        Collider2D collision
+    )
     {
         if (!collision.CompareTag("Enemy"))
         {
@@ -53,10 +57,15 @@ public class Bullet : MonoBehaviour
 
         if (enemy != null)
         {
-            enemy.TakeDamage(_damage);
+            int finalDamage =
+                _damage +
+                (int)UpgradeManager.Instance
+                    .Upgrades[0]
+                    .CurrentValue;
+
+            enemy.TakeDamage(finalDamage);
         }
 
-        // Destroy하지 않고 풀로 반환
         gameObject.SetActive(false);
     }
 
