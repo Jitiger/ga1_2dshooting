@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class UI_AutoButton : MonoBehaviour
@@ -52,6 +53,7 @@ public class UI_AutoButton : MonoBehaviour
         _autoMode = false;
         ApplyAutoMode();
     }
+
 
     public void AutoToggle()
     {
