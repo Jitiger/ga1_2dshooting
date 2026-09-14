@@ -12,6 +12,7 @@ public class ScoreManager : MonoBehaviour
     // 관리: 특정 데이터에 대한 무결성과 생성,읽기,수정,삭제 등과 관련된 게임 로직
     private int _bestScore;
     private int _currentScore = 0;
+    public int Score => _currentScore;
 
     // 저장키
     private const string SaveKey = "BestScore";
@@ -20,6 +21,11 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _bestScoreTextUI;
     [SerializeField] private TextMeshProUGUI _currentScoreTextUI;
 
+    public void Spend(int amount)
+    {
+        _currentScore -= amount;
+        Refresh();
+    }
 
     private void Awake()
     {
