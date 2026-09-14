@@ -65,8 +65,14 @@ public class PlayerMove : MonoBehaviour
         transform.position = newPosition;
     }
 
-    public void IncreaseMoveSpeed(float amount)
+    public void SpeedUp(float upValue)
     {
-        Speed += amount;
+        if (upValue < 0)
+        {
+            Debug.LogWarning("속도 증가량은 0보다 작을 수 없습니다.");
+            return;
+        }
+
+        Speed += upValue;
     }
 }

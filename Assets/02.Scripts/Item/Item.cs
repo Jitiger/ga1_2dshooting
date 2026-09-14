@@ -114,7 +114,7 @@ public class Item : MonoBehaviour
             return;
         }
 
-        playerFire.IncreaseAttackSpeed(
+        playerFire.FireRateUp(
             _attackSpeedIncrease
         );
     }
@@ -144,7 +144,7 @@ public class Item : MonoBehaviour
             return;
         }
 
-        playerMove.IncreaseMoveSpeed(
+        playerMove.SpeedUp(
             _moveSpeedIncrease
         );
     }

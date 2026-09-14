@@ -69,27 +69,3 @@ public class PlayerAutoMove : MonoBehaviour
         }
     }
 }
-
-/* 내가 짰던 코드 문제점 분석하기
- ```
-public void AutoMove()
-{
-    float minDistance = float.MaxValue;
-    GameObject target = null;
-    GameObject[] FindEnemy = GameObject.FindGameObjectsWithTag("Enemy");
-    float playerpositionY = GameObject.FindGameObjectWithTag("Player").transform.position.y;
-    for (int i = 0; i < FindEnemy.Length; i++)
-    {
-        float distance = Mathf.Abs(FindEnemy[i].transform.position.y - playerpositionY);
-        if (distance < minDistance)
-        {
-            minDistance = distance;
-            target = FindEnemy[i];
-            if (target != null)
-            {
-                transform.Translate(,target.transform.position.x);
-            }
-        }
-    }
-
-*/
