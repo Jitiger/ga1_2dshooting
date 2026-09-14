@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlayerFire : MonoBehaviour
 {
-    // 목표: 스페이스바를 누를 때마다 총알을 발사하고 싶다.
     [Header("Main Fire Point")]
     public Transform RightFirePoint;
     public Transform LeftFirePoint;
@@ -14,9 +13,8 @@ public class PlayerFire : MonoBehaviour
     [Header("Fire Setting")]
     [SerializeField] private float _fireRate = 0.5f;
 
-    private const float MinCoolTime = 0.1f;
     private float _coolTimer;
-    private bool _autoFireMode = false;
+    private bool _isAutoFireMode;
 
     public float FireRate => _fireRate;
 
@@ -29,8 +27,10 @@ public class PlayerFire : MonoBehaviour
     {
         _coolTimer -= Time.deltaTime;
 
+        bool manualFireInput = Input.GetKeyDown(KeyCode.Space);
+
         if (_coolTimer <= 0f &&
-            (Input.GetKeyDown(KeyCode.Space) || _autoFireMode))
+            (manualFireInput || _isAutoFireMode))
         {
             Fire();
             SubFire();
@@ -39,9 +39,10 @@ public class PlayerFire : MonoBehaviour
         }
     }
 
-    public void SetAuto(bool auto)
+    // UI_AutoButton에서 자동 공격 상태를 전달받는다.
+    public void SetAuto(bool isAutoMode)
     {
-        _autoFireMode = auto;
+        _isAutoFireMode = isAutoMode;
     }
 
     public void Fire()
@@ -74,19 +75,13 @@ public class PlayerFire : MonoBehaviour
         );
     }
 
-    public void FireRateUp(float upValue)
+    public void IncreaseAttackSpeed(float amount)
     {
-        if (upValue < 0)
-        {
-            Debug.LogWarning("공격 속도 증가량은 0보다 작을 수 없습니다.");
-            return;
-        }
+        _fireRate -= amount;
 
-        _fireRate -= upValue;
-
-        if (_fireRate < MinCoolTime)
+        if (_fireRate < 0.1f)
         {
-            _fireRate = MinCoolTime;
+            _fireRate = 0.1f;
         }
     }
 }
