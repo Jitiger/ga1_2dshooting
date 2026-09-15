@@ -139,7 +139,16 @@ public class EnemySpawner : MonoBehaviour
 
     private float GetHealthMultiplier()
     {
-        // 밸런싱 공식은 나중에 이곳만 바꾸면 된다.
-        return 100f;
+        int bestscore = ScoreManager.Instance.BestScore;
+        foreach (EnemyBalanceData data in _balanceDatatable.Datas)
+        {
+            if (bestscore < data.RequiredScore)
+            {
+                return data.HealthMultiplier;
+            }
+        }
+        // int lastIndex = _balanceDataTable.Datas.Length-1;
+        //return _balanceDataTable.Datas[lastIndex].HealthMultiplier;
     }
+
 }
