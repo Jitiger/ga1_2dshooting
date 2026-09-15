@@ -39,21 +39,10 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < _enemyCount; i++)
         {
-            float randomX = Random.Range(
-                _spawnMinPositionX,
-                _spawnMaxPositionX
-            );
+            float randomX = Random.Range(_spawnMinPositionX, _spawnMaxPositionX);
+            float randomY = Random.Range(_spawnMinPositionY, _spawnMaxPositionY);
 
-            float randomY = Random.Range(
-                _spawnMinPositionY,
-                _spawnMaxPositionY
-            );
-
-            Vector2 spawnPosition = new Vector2(
-                randomX,
-                randomY
-            );
-
+            Vector2 spawnPosition = new Vector2(randomX, randomY);
             GameObject enemyPrefab = SelectRandomEnemy();
 
             if (enemyPrefab == null)
@@ -61,70 +50,43 @@ public class EnemySpawner : MonoBehaviour
                 return;
             }
 
-            GameObject spawnedEnemy = Instantiate(
-                enemyPrefab,
-                spawnPosition,
-                Quaternion.identity
-            );
-
+            GameObject spawnedEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
             Enemy enemy = spawnedEnemy.GetComponent<Enemy>();
 
             if (enemy != null)
             {
-                enemy.SetHealthBalance(
-                    GetHealthMultiplier()
-                );
+                enemy.SetHealthBalance(GetHealthMultiplier());
             }
         }
     }
 
     private GameObject SelectRandomEnemy()
     {
-        if (_spawnDataTable == null)
-        {
-            Debug.LogError(
-                "Enemy Spawn DataTable이 없음."
-            );
-
-            return null;
-        }
-
-        if (_spawnDataTable.spawnDatas == null ||
+        if (_spawnDataTable == null ||
+            _spawnDataTable.spawnDatas == null ||
             _spawnDataTable.spawnDatas.Length == 0)
         {
-            Debug.LogError(
-                "Enemy Spawn Data가 비어 있음."
-            );
-
+            Debug.LogError("Enemy Spawn DataTable이 비어 있습니다.");
             return null;
         }
 
         int totalWeight = 0;
 
-        foreach (EnemySpawnData data
-                 in _spawnDataTable.spawnDatas)
+        foreach (EnemySpawnData data in _spawnDataTable.spawnDatas)
         {
             totalWeight += data.Weight;
         }
 
         if (totalWeight <= 0)
         {
-            Debug.LogError(
-                "Weight의 합은 0보다 커야 함."
-            );
-
+            Debug.LogError("Weight의 합은 0보다 커야 합니다.");
             return null;
         }
 
-        int randomWeight = Random.Range(
-            0,
-            totalWeight
-        );
-
+        int randomWeight = Random.Range(0, totalWeight);
         int cumulativeWeight = 0;
 
-        foreach (EnemySpawnData data
-                 in _spawnDataTable.spawnDatas)
+        foreach (EnemySpawnData data in _spawnDataTable.spawnDatas)
         {
             cumulativeWeight += data.Weight;
 
@@ -139,16 +101,26 @@ public class EnemySpawner : MonoBehaviour
 
     private float GetHealthMultiplier()
     {
-        int bestscore = ScoreManager.Instance.BestScore;
-        foreach (EnemyBalanceData data in _balanceDatatable.Datas)
+        if (_balanceDatatable == null ||
+            _balanceDatatable.Datas == null ||
+            _balanceDatatable.Datas.Length == 0)
         {
-            if (bestscore < data.RequiredScore)
+            return 1f;
+        }
+
+        int bestScore = ScoreManager.Instance.BestScore;
+
+        for (int i = 0; i < _balanceDatatable.Datas.Length; i++)
+        {
+            EnemyBalanceData data = _balanceDatatable.Datas[i];
+
+            if (bestScore < data.RequiredScore)
             {
                 return data.HealthMultiplier;
             }
         }
-        // int lastIndex = _balanceDataTable.Datas.Length-1;
-        //return _balanceDataTable.Datas[lastIndex].HealthMultiplier;
-    }
 
+        int lastIndex = _balanceDatatable.Datas.Length - 1;
+        return _balanceDatatable.Datas[lastIndex].HealthMultiplier;
+    }
 }

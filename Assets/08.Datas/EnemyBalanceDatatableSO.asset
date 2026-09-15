@@ -12,4 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b04d99e7631e8840a1b6d1cfa863f16, type: 3}
   m_Name: EnemyBalanceDatatableSO
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBalanceDatatableSO
-  Datas: []
+  Datas:
+  - RequiredScore: 1000
+    HealthMultiplier: 1
+  - RequiredScore: 5000
+    HealthMultiplier: 1.2
+  - RequiredScore: 10000
+    HealthMultiplier: 1.5
+  - RequiredScore: 50000
+    HealthMultiplier: 1.6
+  - RequiredScore: 100000
+    HealthMultiplier: 2
+  - RequiredScore: 500000
+    HealthMultiplier: 3
