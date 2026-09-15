@@ -30,28 +30,17 @@ public class PlayerMove : MonoBehaviour
 
     private void Move()
     {
-        float h =
-            Input.GetAxisRaw("Horizontal");
+        float h = SimpleInput.GetAxisRaw("Horizontal");
 
-        float v =
-            Input.GetAxisRaw("Vertical");
+        float v = SimpleInput.GetAxisRaw("Vertical");
 
-        Vector2 normalizedDirection =
-            new Vector2(h, v).normalized;
+        Vector2 normalizedDirection = new Vector2(h, v).normalized;
 
         _animator.SetInteger("x", (int)h);
 
-        float finalSpeed =
-            _speed +
-            UpgradeManager.Instance
-                .Upgrades[2]
-                .CurrentValue;
+        float finalSpeed = _speed + UpgradeManager.Instance.Upgrades[2].CurrentValue;
 
-        Vector2 newPosition =
-            transform.position +
-            (Vector3)normalizedDirection *
-            finalSpeed *
-            Time.deltaTime;
+        Vector2 newPosition = transform.position + (Vector3)normalizedDirection * finalSpeed * Time.deltaTime;
 
         if (newPosition.y > _maxPositionY)
         {
