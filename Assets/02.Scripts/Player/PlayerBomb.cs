@@ -14,7 +14,7 @@ public class PlayerBomb : MonoBehaviour
             _coolTimer -= Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(KeyCode.B) && _coolTimer <= 0)
+        if (SimpleInput.GetButton("Bomb") && _coolTimer <= 0)
         {
             UseBomb();
             _coolTimer = _coolTime;
@@ -23,10 +23,6 @@ public class PlayerBomb : MonoBehaviour
 
     private void UseBomb()
     {
-        Instantiate(
-            _bombPrefab,
-            transform.position,
-            Quaternion.identity
-        );
+        Instantiate(_bombPrefab, transform.position, Quaternion.identity);
     }
 }
