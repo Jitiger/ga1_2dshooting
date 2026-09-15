@@ -3,53 +3,42 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [Header("적 스폰 데이터")]
-    [SerializeField]
-    private EnemySpawnDataTableSO _spawnDataTable;
+    [SerializeField] private EnemySpawnDataTableSO _spawnDataTable;
+    [SerializeField] private EnemyBalanceDaTatableSO _balanceDatatable;
 
     [Header("스폰 간격")]
-    [SerializeField]
-    private float _spawnInterval = 3f;
+    [SerializeField] private float _spawnInterval = 3f;
 
-    private float _timer = 0f;
+    private float _timer;
 
     [Header("스폰 위치")]
-    [SerializeField]
-    private float _spawnMaxPositionX = 0f;
-
-    [SerializeField]
-    private float _spawnMinPositionX = 0f;
-
-    [SerializeField]
-    private float _spawnMaxPositionY = 0f;
-
-    [SerializeField]
-    private float _spawnMinPositionY = 0f;
+    [SerializeField] private float _spawnMaxPositionX;
+    [SerializeField] private float _spawnMinPositionX;
+    [SerializeField] private float _spawnMaxPositionY;
+    [SerializeField] private float _spawnMinPositionY;
 
     [Header("생성할 적의 수")]
-    [SerializeField]
-    private int _enemyCount = 3;
-
+    [SerializeField] private int _enemyCount = 3;
 
     private void Update()
     {
         _timer += Time.deltaTime;
 
-        if (_timer >= _spawnInterval)
+        if (_timer < _spawnInterval)
         {
-            _timer = 0f;
-
-            _spawnInterval = Random.Range(1f, 3f);
-
-            Spawn();
+            return;
         }
-    }
 
+        _timer = 0f;
+        _spawnInterval = Random.Range(1f, 3f);
+
+        Spawn();
+    }
 
     private void Spawn()
     {
         for (int i = 0; i < _enemyCount; i++)
         {
-            // 랜덤 위치
             float randomX = Random.Range(
                 _spawnMinPositionX,
                 _spawnMaxPositionX
@@ -60,30 +49,37 @@ public class EnemySpawner : MonoBehaviour
                 _spawnMaxPositionY
             );
 
-            Vector2 spawnPosition =
-                new Vector2(randomX, randomY);
+            Vector2 spawnPosition = new Vector2(
+                randomX,
+                randomY
+            );
 
-            // 가중치에 따라 적 선택
-            GameObject enemyPrefab =
-                SelectRandomEnemy();
+            GameObject enemyPrefab = SelectRandomEnemy();
 
             if (enemyPrefab == null)
             {
                 return;
             }
 
-            Instantiate(
+            GameObject spawnedEnemy = Instantiate(
                 enemyPrefab,
                 spawnPosition,
                 Quaternion.identity
             );
+
+            Enemy enemy = spawnedEnemy.GetComponent<Enemy>();
+
+            if (enemy != null)
+            {
+                enemy.SetHealthBalance(
+                    GetHealthMultiplier()
+                );
+            }
         }
     }
 
-
     private GameObject SelectRandomEnemy()
     {
-        // 데이터 테이블 확인
         if (_spawnDataTable == null)
         {
             Debug.LogError(
@@ -103,8 +99,6 @@ public class EnemySpawner : MonoBehaviour
             return null;
         }
 
-
-        // 1. 전체 가중치 더하기
         int totalWeight = 0;
 
         foreach (EnemySpawnData data
@@ -112,7 +106,6 @@ public class EnemySpawner : MonoBehaviour
         {
             totalWeight += data.Weight;
         }
-
 
         if (totalWeight <= 0)
         {
@@ -123,13 +116,11 @@ public class EnemySpawner : MonoBehaviour
             return null;
         }
 
+        int randomWeight = Random.Range(
+            0,
+            totalWeight
+        );
 
-        // 2. 전체 가중치 범위에서 랜덤 값
-        int randomWeight =
-            Random.Range(0, totalWeight);
-
-
-        // 3. 누적 가중치로 적 선택
         int cumulativeWeight = 0;
 
         foreach (EnemySpawnData data
@@ -143,7 +134,12 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-
         return null;
+    }
+
+    private float GetHealthMultiplier()
+    {
+        // 밸런싱 공식은 나중에 이곳만 바꾸면 된다.
+        return 100f;
     }
 }

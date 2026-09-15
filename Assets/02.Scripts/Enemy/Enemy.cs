@@ -7,6 +7,8 @@ public abstract class Enemy : MonoBehaviour
     [Header("적 체력")]
     [field: SerializeField]
     public int Health { get; private set; } = 100;
+    [SerializeField] private int _health = 100; // 적의 현재 체력
+    [SerializeField] private int _baseHealth; // 적의 기준 체력
 
     public bool IsDead => Health <= 0;
 
@@ -41,6 +43,12 @@ public abstract class Enemy : MonoBehaviour
     private void Update()
     {
         Move();
+    }
+
+    public void SetHealthBalance(float multiplier)
+    {
+        // 체력초기화        
+        _health = (int)(_baseHealth * multiplier);
     }
 
     protected abstract void Move();

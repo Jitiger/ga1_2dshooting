@@ -13,6 +13,7 @@ public class ScoreManager : MonoBehaviour
     private int _bestScore;
     private int _currentScore = 0;
     public int Score => _currentScore;
+    public int BestScore => _bestScore;
 
     // 저장키
     private const string SaveKey = "BestScore";
